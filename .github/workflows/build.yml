@@ -7,9 +7,9 @@ on:
     branches: [ master ]
 
 env:
-  IMAGE_NAME: registry.ap-northeast-1.aliyuncs.com/go-admin/go-admin-api # 镜像名称
+  IMAGE_NAME: registry.ap-southeast-1.aliyuncs.com/zylinkus/go-admin-api # 镜像名称
   TAG: ${{ github.sha }}
-  IMAGE_NAME_TAG: registry.ap-northeast-1.aliyuncs.com/go-admin/go-admin-api:${{ github.sha }}
+  IMAGE_NAME_TAG: registry.ap-southeast-1.aliyuncs.com/zylinkus/go-admin-api:${{ github.sha }}
 
 jobs:
 
@@ -31,7 +31,7 @@ jobs:
 
       - name: Build the Docker image and push
         run: |
-          docker login --username=${{ secrets.DOCKER_USERNAME }} registry.ap-northeast-1.aliyuncs.com --password=${{ secrets.DOCKER_PASSWORD }}
+          docker login --username=${{ secrets.DOCKER_USERNAME }} registry.ap-southeast-1.aliyuncs.com --password=${{ secrets.DOCKER_PASSWORD }}
           echo "************ docker login end"
           docker build -t go-admin-api:latest .
           echo "************ docker build end"
@@ -53,5 +53,5 @@ jobs:
           # 重启的脚本，根据自身情况做相应改动，一般要做的是migrate数据库以及重启服务器
           script: |
             sudo docker rm -f go-admin-api
-            sudo docker login --username=${{ secrets.DOCKER_USERNAME }} registry.ap-northeast-1.aliyuncs.com --password=${{ secrets.DOCKER_PASSWORD }}
+            sudo docker login --username=${{ secrets.DOCKER_USERNAME }} registry.ap-southeast-1.aliyuncs.com --password=${{ secrets.DOCKER_PASSWORD }}
             sudo docker run -d -p 8000:8000 --name go-admin-api ${{ env.IMAGE_NAME_TAG }}
