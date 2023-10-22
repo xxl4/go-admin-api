@@ -20,4 +20,4 @@ cmd/migrate/migration/version-local/*
 
 # go sum
 go.sum
-config/settings.deva.yml
+config/settings.dev_steve.yml
