@@ -17,18 +17,9 @@ body{
   overflow-y:hidden
 }
 </style>
-<script src="https://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
-<script type="text/javascript"> 
-window.onerror=function(){return true;} 
-$(function(){ 
-  headerH = 0;  
-  var h=$(window).height();
-  $("#iframe").height((h-headerH)+"px"); 
-});
-</script>
 </head>
 <body>
-<iframe id="iframe" frameborder="0" src="https://doc.go-admin.dev" style="width:100%;"></iframe>
+pls use the api document file <a href="/swagger/admin/index.html">swagger/admin/index.html</a>
 </body>
 </html>
 `
