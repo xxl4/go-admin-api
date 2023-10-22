@@ -35,7 +35,7 @@ spec:
     spec:
       containers:
       - name: go-admin
-        image: registry.cn-shanghai.aliyuncs.com/go-admin-team/go-admin
+        image: registry.ap-southeast-1.aliyuncs.com/kuops/go-admin-api
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8000
