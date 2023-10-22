@@ -12,6 +12,6 @@ jobs:
         uses: pixta-dev/repository-mirroring-action@v1
         with:
           target_repo_url:
-            git@gitee.com:liulizhi/go-admin.git
+            git@gitee.com:nicelizhi/go-admin.git
           ssh_private_key:
             ${{ secrets.GITEE_KEY }}
