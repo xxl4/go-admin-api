@@ -7,9 +7,9 @@ on:
     branches: [ master ]
 
 env:
-  IMAGE_NAME: registry.ap-southeast-1.aliyuncs.com/zylinkus/go-admin-api # 镜像名称
+  IMAGE_NAME: registry.ap-southeast-1.aliyuncs.com/kuops/go-admin-api # 镜像名称
   TAG: ${{ github.sha }}
-  IMAGE_NAME_TAG: registry.ap-southeast-1.aliyuncs.com/zylinkus/go-admin-api:${{ github.sha }}
+  IMAGE_NAME_TAG: registry.ap-southeast-1.aliyuncs.com/kuops/go-admin-api:${{ github.sha }}
 
 jobs:
 
@@ -27,7 +27,7 @@ jobs:
         run: go mod tidy
 
       - name: Build
-        run: env CGO_ENABLED=1 GOOS=linux GOARCH=amd64 go build -tags "sqlite3,json1" --ldflags "-extldflags -static" -o api-admin-server .
+        run: env CGO_ENABLED=1 GOOS=linux GOARCH=amd64 go build -tags "sqlite3,json1" --ldflags "-extldflags -static" -o main .
 
       - name: Build the Docker image and push
         run: |
