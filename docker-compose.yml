@@ -1,8 +1,8 @@
 version: '3.8'
 services:
   go-admin-api:
-    container_name: go-admin
-    image: go-admin:latest
+    container_name: go-admin-api
+    image: registry.ap-southeast-1.aliyuncs.com/kuops/go-admin-api:latest
     privileged: true
     restart: always
     ports:
@@ -12,8 +12,8 @@ services:
       - ./static/:/go-admin-api/static/
       - ./temp/:/go-admin-api/temp/
     networks:
-      - myweb
+      - kuops
 networks:
-  myweb:
+  kuops:
     driver: bridge
 
