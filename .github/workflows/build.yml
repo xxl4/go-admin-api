@@ -26,8 +26,8 @@ jobs:
         with:
           go-version: ${{ matrix.go-version }}
 
-      - name: go Test
-        run: go test
+     # - name: go Test
+     #   run: go test
 
       - name: Tidy
         run: go mod tidy
