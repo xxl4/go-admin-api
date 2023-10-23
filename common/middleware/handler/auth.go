@@ -5,17 +5,18 @@ import (
 	"go-admin/common"
 	"net/http"
 
-	"github.com/gin-gonic/gin"
-	"github.com/go-admin-team/go-admin-core/sdk"
-	"github.com/go-admin-team/go-admin-core/sdk/api"
-	"github.com/go-admin-team/go-admin-core/sdk/config"
-	"github.com/go-admin-team/go-admin-core/sdk/pkg"
-	"github.com/go-admin-team/go-admin-core/sdk/pkg/captcha"
-	jwt "github.com/go-admin-team/go-admin-core/sdk/pkg/jwtauth"
-	"github.com/go-admin-team/go-admin-core/sdk/pkg/jwtauth/user"
-	"github.com/go-admin-team/go-admin-core/sdk/pkg/response"
-	"github.com/mssola/user_agent"
 	"go-admin/common/global"
+
+	"github.com/gin-gonic/gin"
+	"github.com/mssola/user_agent"
+	"github.com/nicelizhi/go-admin-core/sdk"
+	"github.com/nicelizhi/go-admin-core/sdk/api"
+	"github.com/nicelizhi/go-admin-core/sdk/config"
+	"github.com/nicelizhi/go-admin-core/sdk/pkg"
+	"github.com/nicelizhi/go-admin-core/sdk/pkg/captcha"
+	jwt "github.com/nicelizhi/go-admin-core/sdk/pkg/jwtauth"
+	"github.com/nicelizhi/go-admin-core/sdk/pkg/jwtauth/user"
+	"github.com/nicelizhi/go-admin-core/sdk/pkg/response"
 )
 
 func PayloadFunc(data interface{}) jwt.MapClaims {
