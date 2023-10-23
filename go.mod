@@ -152,7 +152,7 @@ require (
 	gorm.io/plugin/dbresolver v1.3.0 // indirect
 )
 
-replace (
-	github.com/nicelizhi/go-admin-core v1.6.2 => ../go-admin-core
-	github.com/nicelizhi/go-admin-core/sdk v1.6.2 => ../go-admin-core/sdk
-)
+// replace (
+// 	github.com/nicelizhi/go-admin-core v1.6.2 => ../go-admin-core
+// 	github.com/nicelizhi/go-admin-core/sdk v1.6.2 => ../go-admin-core/sdk
+// )
