@@ -51,7 +51,7 @@ The front-end and back-end separation authority management system based on Gin +
 1. Content management: demo function, including classification management and content management. You can refer to the easy to use quick start.
 
 # Document
-[https://nicelizhi.github.io/go-admin-api/docs/](https://nicelizhi.github.io/go-admin-api/docs/) 
+[https://nicelizhi.github.io/go-admin-api/](https://nicelizhi.github.io/go-admin-api/) 
 
 # Issue
 [https://github.com/nicelizhi/go-admin-api/issues](https://github.com/nicelizhi/go-admin-api/issues) 
