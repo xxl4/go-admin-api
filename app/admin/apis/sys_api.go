@@ -1,6 +1,7 @@
 package apis
 
 import (
+	ginI18n "github.com/gin-contrib/i18n"
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 	"github.com/nicelizhi/go-admin-core/sdk/api"
@@ -49,10 +50,11 @@ func (e SysApi) GetPage(c *gin.Context) {
 	var count int64
 	err = s.GetPage(&req, p, &list, &count)
 	if err != nil {
-		e.Error(500, err, "查询失败")
+		//e.Error(500, err, "查询失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Query failed"))
 		return
 	}
-	e.PageOK(list, int(count), req.GetPageIndex(), req.GetPageSize(), "查询成功")
+	e.PageOK(list, int(count), req.GetPageIndex(), req.GetPageSize(), ginI18n.MustGetMessage(c, "Query successful"))
 }
 
 // Get 获取接口管理
@@ -80,10 +82,10 @@ func (e SysApi) Get(c *gin.Context) {
 	var object models.SysApi
 	err = s.Get(&req, p, &object).Error
 	if err != nil {
-		e.Error(500, err, "查询失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Query failed"))
 		return
 	}
-	e.OK(object, "查询成功")
+	e.OK(object, ginI18n.MustGetMessage(c, "Query successful"))
 }
 
 // Update 修改接口管理
@@ -141,8 +143,9 @@ func (e SysApi) DeleteSysApi(c *gin.Context) {
 	p := actions.GetPermissionFromContext(c)
 	err = s.Remove(&req, p)
 	if err != nil {
-		e.Error(500, err, "删除失败")
+		//e.Error(500, err, "删除失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Failed to delete"))
 		return
 	}
-	e.OK(req.GetId(), "删除成功")
+	e.OK(req.GetId(), ginI18n.MustGetMessage(c, "Successfully deleted"))
 }

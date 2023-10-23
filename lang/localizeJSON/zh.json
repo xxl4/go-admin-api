@@ -2,5 +2,9 @@
     "Parameter validation failed": "参数验证失败",
     "Failed to upload third party": "上传第三方失败",
     "Picture cannot be empty": "图片不能为空",
+    "Query failed": "查询失败",
+    "Query successful": "查询成功",
+    "Successfully deleted": "删除成功",
+    "Failed to delete": "删除失败",
     "Initialization file path failed": "初始化文件路径失败"
 }
