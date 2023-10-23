@@ -1,6 +1,7 @@
 package tools
 
 import (
+	ginI18n "github.com/gin-contrib/i18n"
 	"github.com/gin-gonic/gin"
 	"github.com/nicelizhi/go-admin-core/sdk/pkg"
 	_ "github.com/nicelizhi/go-admin-core/sdk/pkg/response"
@@ -36,7 +37,7 @@ func (e Gen) GetDBColumnList(c *gin.Context) {
 	db, err := pkg.GetOrm(c)
 	if err != nil {
 		log.Errorf("get db connection error, %s", err.Error())
-		e.Error(500, err, "数据库连接获取失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Database connection acquisition failed"))
 		return
 	}
 

@@ -3,6 +3,7 @@ package tools
 import (
 	"strings"
 
+	ginI18n "github.com/gin-contrib/i18n"
 	"github.com/gin-gonic/gin"
 	"github.com/nicelizhi/go-admin-core/sdk/api"
 	"github.com/nicelizhi/go-admin-core/sdk/pkg"
@@ -44,7 +45,7 @@ func (e SysTable) GetPage(c *gin.Context) {
 	db, err := e.GetOrm()
 	if err != nil {
 		log.Errorf("get db connection error, %s", err.Error())
-		e.Error(500, err, "数据库连接获取失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Database connection acquisition failed"))
 		return
 	}
 

@@ -3,6 +3,7 @@ package tools
 import (
 	"errors"
 
+	ginI18n "github.com/gin-contrib/i18n"
 	"github.com/gin-gonic/gin"
 	"github.com/nicelizhi/go-admin-core/sdk/config"
 	"github.com/nicelizhi/go-admin-core/sdk/pkg"
@@ -29,7 +30,7 @@ func (e Gen) GetDBTableList(c *gin.Context) {
 	e.Context = c
 	log := e.GetLogger()
 	if config.DatabaseConfig.Driver == "sqlite3" || config.DatabaseConfig.Driver == "postgres" {
-		err = errors.New("对不起，sqlite3 或 postgres 不支持代码生成！")
+		err = errors.New(ginI18n.MustGetMessage(c, "Sorry code generation is not supported for sqlite3 or postgres"))
 		log.Warn(err)
 		e.Error(403, err, "")
 		return
@@ -46,7 +47,7 @@ func (e Gen) GetDBTableList(c *gin.Context) {
 	db, err := pkg.GetOrm(c)
 	if err != nil {
 		log.Errorf("get db connection error, %s", err.Error())
-		e.Error(500, err, "数据库连接获取失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Database connection acquisition failed"))
 		return
 	}
 
