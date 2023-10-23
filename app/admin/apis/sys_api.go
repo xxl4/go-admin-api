@@ -114,10 +114,10 @@ func (e SysApi) Update(c *gin.Context) {
 	p := actions.GetPermissionFromContext(c)
 	err = s.Update(&req, p)
 	if err != nil {
-		e.Error(500, err, "更新失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Update failed"))
 		return
 	}
-	e.OK(req.GetId(), "更新成功")
+	e.OK(req.GetId(), ginI18n.MustGetMessage(c, "Update completed"))
 }
 
 // DeleteSysApi 删除接口管理
