@@ -29,9 +29,9 @@ require (
 	golang.org/x/crypto v0.14.0
 	gorm.io/driver/mysql v1.4.4
 	gorm.io/driver/postgres v1.4.5
-	gorm.io/driver/sqlite v1.4.3
+	gorm.io/driver/sqlite v1.5.4
 	gorm.io/driver/sqlserver v1.4.1
-	gorm.io/gorm v1.24.2
+	gorm.io/gorm v1.25.2-0.20230530020048-26663ab9bf55
 )
 
 require (
@@ -101,7 +101,7 @@ require (
 	github.com/mailru/easyjson v0.7.6 // indirect
 	github.com/mattn/go-colorable v0.1.7 // indirect
 	github.com/mattn/go-isatty v0.0.19 // indirect
-	github.com/mattn/go-sqlite3 v1.14.15 // indirect
+	github.com/mattn/go-sqlite3 v1.14.17 // indirect
 	github.com/mattn/goveralls v0.0.2 // indirect
 	github.com/matttproud/golang_protobuf_extensions v1.0.1 // indirect
 	github.com/mgutz/ansi v0.0.0-20170206155736-9520e82c474b // indirect
