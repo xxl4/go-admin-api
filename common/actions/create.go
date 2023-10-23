@@ -3,6 +3,7 @@ package actions
 import (
 	"net/http"
 
+	ginI18n "github.com/gin-contrib/i18n"
 	"github.com/gin-gonic/gin"
 	"github.com/nicelizhi/go-admin-core/sdk/api"
 	"github.com/nicelizhi/go-admin-core/sdk/pkg"
@@ -33,7 +34,7 @@ func CreateAction(control dto.Control) gin.HandlerFunc {
 		var object models.ActiveRecord
 		object, err = req.GenerateM()
 		if err != nil {
-			response.Error(c, 500, err, "模型生成失败")
+			response.Error(c, 500, err, ginI18n.MustGetMessage(c, "Model generation failed"))
 			return
 		}
 		object.SetCreateBy(user.GetUserId(c))
