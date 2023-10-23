@@ -1,10 +1,10 @@
 
 # go-admin
 
-[![Release](https://img.shields.io/github/release/nicelizhi/go-admin.svg?style=flat-square)](https://github.com/nicelizhi/go-admin/releases)
-[![License](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/nicelizhi/go-admin)
+[![Release](https://img.shields.io/github/release/nicelizhi/go-admin-api.svg?style=flat-square)](https://github.com/nicelizhi/go-admin-api/releases)
+[![License](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/nicelizhi/go-admin-api)
 
-English | [简体中文](https://github.com/nicelizhi/go-admin/blob/master/README.Zh-cn.md)
+English | [简体中文](https://github.com/nicelizhi/go-admin-api/blob/master/README.Zh-cn.md)
 
 The front-end and back-end separation authority management system based on Gin + Vue + Element UI OR Arco Design is extremely simple to initialize the system. You only need to modify the database connection in the configuration file. The system supports multi-instruction operations. Migration instructions can make it easier to initialize database information. Service instructions It's easy to start the api service.
 
