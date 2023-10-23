@@ -2,6 +2,7 @@ package api
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
@@ -10,7 +11,9 @@ import (
 	"time"
 
 	"github.com/nicelizhi/go-admin-core/sdk/runtime"
+	"golang.org/x/text/language"
 
+	ginI18n "github.com/gin-contrib/i18n"
 	"github.com/gin-gonic/gin"
 	"github.com/nicelizhi/go-admin-core/config/source/file"
 	"github.com/nicelizhi/go-admin-core/sdk"
@@ -55,6 +58,9 @@ func init() {
 
 	//注册路由 fixme 其他应用的路由，在本目录新建文件放在init方法
 	AppRouters = append(AppRouters, router.InitRouter)
+
+	// config the timezone
+	os.Setenv("TZ", config.ApplicationConfig.TimeZone)
 }
 
 func setup() {
@@ -156,8 +162,10 @@ func run() error {
 var Router runtime.Router
 
 func tip() {
-	usageStr := `欢迎使用 ` + pkg.Green(`go-admin `+global.Version) + ` 可以使用 ` + pkg.Red(`-h`) + ` 查看命令`
+	usageStr := `欢迎使用 ` + pkg.Green(`go-admin api `+global.Version) + ` 可以使用 ` + pkg.Red(`-h`) + ` 查看命令`
 	fmt.Printf("%s \n\n", usageStr)
+	systemStr := `您的 timezone ` + pkg.Green(config.ApplicationConfig.TimeZone) + ` local 为` + pkg.Red(config.ApplicationConfig.Locale)
+	fmt.Printf("%s \n\n", systemStr)
 }
 
 func initRouter() {
@@ -180,7 +188,14 @@ func initRouter() {
 	//r.Use(middleware.Metrics())
 	r.Use(common.Sentinel()).
 		Use(common.RequestId(pkg.TrafficKey)).
-		Use(api.SetRequestLogger)
+		Use(api.SetRequestLogger).
+		Use(ginI18n.Localize(ginI18n.WithBundle(&ginI18n.BundleCfg{
+			RootPath:         "./lang/localizeJSON",
+			AcceptLanguage:   []language.Tag{language.English, language.Chinese},
+			DefaultLanguage:  language.English,
+			UnmarshalFunc:    json.Unmarshal,
+			FormatBundleFile: "json",
+		})))
 
 	common.InitMiddleware(r)
 
