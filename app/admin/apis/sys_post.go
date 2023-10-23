@@ -3,6 +3,7 @@ package apis
 import (
 	"fmt"
 
+	ginI18n "github.com/gin-contrib/i18n"
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 	"github.com/nicelizhi/go-admin-core/sdk/api"
@@ -48,11 +49,11 @@ func (e SysPost) GetPage(c *gin.Context) {
 
 	err = s.GetPage(&req, &list, &count)
 	if err != nil {
-		e.Error(500, err, "查询失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Query failed"))
 		return
 	}
 
-	e.PageOK(list, int(count), req.GetPageIndex(), req.GetPageSize(), "查询成功")
+	e.PageOK(list, int(count), req.GetPageIndex(), req.GetPageSize(), ginI18n.MustGetMessage(c, "Query successful"))
 }
 
 // Get
@@ -84,7 +85,7 @@ func (e SysPost) Get(c *gin.Context) {
 		return
 	}
 
-	e.OK(object, "查询成功")
+	e.OK(object, ginI18n.MustGetMessage(c, "Query successful"))
 }
 
 // Insert
@@ -116,7 +117,7 @@ func (e SysPost) Insert(c *gin.Context) {
 		e.Error(500, err, fmt.Sprintf("新建岗位失败！错误详情：%s", err.Error()))
 		return
 	}
-	e.OK(req.GetId(), "创建成功")
+	e.OK(req.GetId(), ginI18n.MustGetMessage(c, "Created successfully"))
 }
 
 // Update
@@ -150,7 +151,7 @@ func (e SysPost) Update(c *gin.Context) {
 		e.Error(500, err, fmt.Sprintf("岗位更新失败！错误详情：%s", err.Error()))
 		return
 	}
-	e.OK(req.GetId(), "更新成功")
+	e.OK(req.GetId(), ginI18n.MustGetMessage(c, "Update completed"))
 }
 
 // Delete
@@ -180,5 +181,5 @@ func (e SysPost) Delete(c *gin.Context) {
 		e.Error(500, err, fmt.Sprintf("岗位删除失败！错误详情：%s", err.Error()))
 		return
 	}
-	e.OK(req.GetId(), "删除成功")
+	e.OK(req.GetId(), ginI18n.MustGetMessage(c, "Successfully deleted"))
 }

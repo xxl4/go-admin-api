@@ -3,6 +3,7 @@ package apis
 import (
 	"go-admin/app/admin/models"
 
+	ginI18n "github.com/gin-contrib/i18n"
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 	"github.com/nicelizhi/go-admin-core/sdk/api"
@@ -45,10 +46,10 @@ func (e SysLoginLog) GetPage(c *gin.Context) {
 	var count int64
 	err = s.GetPage(&req, &list, &count)
 	if err != nil {
-		e.Error(500, err, "查询失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Query failed"))
 		return
 	}
-	e.PageOK(list, int(count), req.GetPageIndex(), req.GetPageSize(), "查询成功")
+	e.PageOK(list, int(count), req.GetPageIndex(), req.GetPageSize(), ginI18n.MustGetMessage(c, "Query successful"))
 }
 
 // Get 登录日志通过id获取
@@ -75,10 +76,10 @@ func (e SysLoginLog) Get(c *gin.Context) {
 	var object models.SysLoginLog
 	err = s.Get(&req, &object)
 	if err != nil {
-		e.Error(500, err, "查询失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Query failed"))
 		return
 	}
-	e.OK(object, "查询成功")
+	e.OK(object, ginI18n.MustGetMessage(c, "Query successful"))
 }
 
 // Delete 登录日志删除
@@ -104,8 +105,8 @@ func (e SysLoginLog) Delete(c *gin.Context) {
 	}
 	err = s.Remove(&req)
 	if err != nil {
-		e.Error(500, err, "删除失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Failed to delete"))
 		return
 	}
-	e.OK(req.GetId(), "删除成功")
+	e.OK(req.GetId(), ginI18n.MustGetMessage(c, "Successfully deleted"))
 }

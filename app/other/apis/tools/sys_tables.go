@@ -56,7 +56,7 @@ func (e SysTable) GetPage(c *gin.Context) {
 		e.Error(500, err, "")
 		return
 	}
-	e.PageOK(result, count, pageIndex, pageSize, "查询成功")
+	e.PageOK(result, count, pageIndex, pageSize, ginI18n.MustGetMessage(c, "Query successful"))
 }
 
 // Get
@@ -328,7 +328,7 @@ func (e SysTable) Update(c *gin.Context) {
 		e.Error(500, err, "")
 		return
 	}
-	e.OK(result, "修改成功")
+	e.OK(result, ginI18n.MustGetMessage(c, "Update completed"))
 }
 
 // Delete
@@ -336,8 +336,8 @@ func (e SysTable) Update(c *gin.Context) {
 // @Description 删除表结构
 // @Tags 工具 / 生成工具
 // @Param tableId path int true "tableId"
-// @Success 200 {string} string	"{"code": 200, "message": "删除成功"}"
-// @Success 200 {string} string	"{"code": -1, "message": "删除失败"}"
+// @Success 200 {string} string	"{"code": 200, "message": ginI18n.MustGetMessage(c, "Successfully deleted")}"
+// @Success 200 {string} string	"{"code": -1, "message": ginI18n.MustGetMessage(c, "Failed to delete")}"
 // @Router /api/v1/sys/tables/info/{tableId} [delete]
 func (e SysTable) Delete(c *gin.Context) {
 	e.Context = c
@@ -354,8 +354,8 @@ func (e SysTable) Delete(c *gin.Context) {
 	_, err = data.BatchDelete(db, IDS)
 	if err != nil {
 		log.Errorf("BatchDelete error, %s", err.Error())
-		e.Error(500, err, "删除失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Failed to delete"))
 		return
 	}
-	e.OK(nil, "删除成功")
+	e.OK(nil, ginI18n.MustGetMessage(c, "Successfully deleted"))
 }

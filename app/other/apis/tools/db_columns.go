@@ -48,5 +48,5 @@ func (e Gen) GetDBColumnList(c *gin.Context) {
 		e.Error(500, err, "")
 		return
 	}
-	e.PageOK(result, count, pageIndex, pageSize, "查询成功")
+	e.PageOK(result, count, pageIndex, pageSize, ginI18n.MustGetMessage(c, "Query successful"))
 }

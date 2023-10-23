@@ -3,6 +3,7 @@ package apis
 import (
 	"go-admin/app/admin/models"
 
+	ginI18n "github.com/gin-contrib/i18n"
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 	"github.com/nicelizhi/go-admin-core/sdk/api"
@@ -40,10 +41,10 @@ func (e SysMenu) GetPage(c *gin.Context) {
 	var list = make([]models.SysMenu, 0)
 	err = s.GetPage(&req, &list).Error
 	if err != nil {
-		e.Error(500, err, "查询失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Query failed"))
 		return
 	}
-	e.OK(list, "查询成功")
+	e.OK(list, ginI18n.MustGetMessage(c, "Query successful"))
 }
 
 // Get 获取菜单详情
@@ -71,10 +72,10 @@ func (e SysMenu) Get(c *gin.Context) {
 
 	err = s.Get(&req, &object).Error
 	if err != nil {
-		e.Error(500, err, "查询失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Query failed"))
 		return
 	}
-	e.OK(object, "查询成功")
+	e.OK(object, ginI18n.MustGetMessage(c, "Query successful"))
 }
 
 // Insert 创建菜单
@@ -104,10 +105,10 @@ func (e SysMenu) Insert(c *gin.Context) {
 	req.SetCreateBy(user.GetUserId(c))
 	err = s.Insert(&req).Error
 	if err != nil {
-		e.Error(500, err, "创建失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Creation failed"))
 		return
 	}
-	e.OK(req.GetId(), "创建成功")
+	e.OK(req.GetId(), ginI18n.MustGetMessage(c, "Created successfully"))
 }
 
 // Update 修改菜单
@@ -138,10 +139,10 @@ func (e SysMenu) Update(c *gin.Context) {
 	req.SetUpdateBy(user.GetUserId(c))
 	err = s.Update(&req).Error
 	if err != nil {
-		e.Error(500, err, "更新失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Update failed"))
 		return
 	}
-	e.OK(req.GetId(), "更新成功")
+	e.OK(req.GetId(), ginI18n.MustGetMessage(c, "Update completed"))
 }
 
 // Delete 删除菜单
@@ -168,10 +169,10 @@ func (e SysMenu) Delete(c *gin.Context) {
 	err = s.Remove(control).Error
 	if err != nil {
 		e.Logger.Errorf("RemoveSysMenu error, %s", err)
-		e.Error(500, err, "删除失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Failed to delete"))
 		return
 	}
-	e.OK(control.GetId(), "删除成功")
+	e.OK(control.GetId(), ginI18n.MustGetMessage(c, "Successfully deleted"))
 }
 
 // GetMenuRole 根据登录角色名称获取菜单列表数据（左菜单使用）
@@ -196,7 +197,7 @@ func (e SysMenu) GetMenuRole(c *gin.Context) {
 	result, err := s.SetMenuRole(user.GetRoleName(c))
 
 	if err != nil {
-		e.Error(500, err, "查询失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Query failed"))
 		return
 	}
 
@@ -269,7 +270,7 @@ func (e SysMenu) GetMenuTreeSelect(c *gin.Context) {
 
 	result, err := m.SetLabel()
 	if err != nil {
-		e.Error(500, err, "查询失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Query failed"))
 		return
 	}
 

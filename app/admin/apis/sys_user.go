@@ -4,6 +4,7 @@ import (
 	"go-admin/app/admin/models"
 	"net/http"
 
+	ginI18n "github.com/gin-contrib/i18n"
 	"github.com/gin-gonic/gin/binding"
 	"golang.org/x/crypto/bcrypt"
 
@@ -52,11 +53,11 @@ func (e SysUser) GetPage(c *gin.Context) {
 
 	err = s.GetPage(&req, p, &list, &count)
 	if err != nil {
-		e.Error(500, err, "查询失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Query failed"))
 		return
 	}
 
-	e.PageOK(list, int(count), req.GetPageIndex(), req.GetPageSize(), "查询成功")
+	e.PageOK(list, int(count), req.GetPageIndex(), req.GetPageSize(), ginI18n.MustGetMessage(c, "Query successful"))
 }
 
 // Get
@@ -85,10 +86,10 @@ func (e SysUser) Get(c *gin.Context) {
 	p := actions.GetPermissionFromContext(c)
 	err = s.Get(&req, p, &object)
 	if err != nil {
-		e.Error(http.StatusUnprocessableEntity, err, "查询失败")
+		e.Error(http.StatusUnprocessableEntity, err, ginI18n.MustGetMessage(c, "Query failed"))
 		return
 	}
-	e.OK(object, "查询成功")
+	e.OK(object, ginI18n.MustGetMessage(c, "Query successful"))
 }
 
 // Insert
@@ -123,7 +124,7 @@ func (e SysUser) Insert(c *gin.Context) {
 		return
 	}
 
-	e.OK(req.GetId(), "创建成功")
+	e.OK(req.GetId(), ginI18n.MustGetMessage(c, "Created successfully"))
 }
 
 // Update
@@ -160,7 +161,7 @@ func (e SysUser) Update(c *gin.Context) {
 		e.Logger.Error(err)
 		return
 	}
-	e.OK(req.GetId(), "更新成功")
+	e.OK(req.GetId(), ginI18n.MustGetMessage(c, "Update completed"))
 }
 
 // Delete
@@ -196,7 +197,7 @@ func (e SysUser) Delete(c *gin.Context) {
 		e.Logger.Error(err)
 		return
 	}
-	e.OK(req.GetId(), "删除成功")
+	e.OK(req.GetId(), ginI18n.MustGetMessage(c, "Successfully deleted"))
 }
 
 // InsetAvatar
@@ -244,7 +245,7 @@ func (e SysUser) InsetAvatar(c *gin.Context) {
 		e.Logger.Error(err)
 		return
 	}
-	e.OK(filPath, "修改成功")
+	e.OK(filPath, ginI18n.MustGetMessage(c, "Update completed"))
 }
 
 // UpdateStatus 修改用户状态
@@ -281,7 +282,7 @@ func (e SysUser) UpdateStatus(c *gin.Context) {
 		e.Logger.Error(err)
 		return
 	}
-	e.OK(req.GetId(), "更新成功")
+	e.OK(req.GetId(), ginI18n.MustGetMessage(c, "Update completed"))
 }
 
 // ResetPwd 重置用户密码
@@ -318,7 +319,7 @@ func (e SysUser) ResetPwd(c *gin.Context) {
 		e.Logger.Error(err)
 		return
 	}
-	e.OK(req.GetId(), "更新成功")
+	e.OK(req.GetId(), ginI18n.MustGetMessage(c, "Update completed"))
 }
 
 // UpdatePwd
@@ -397,7 +398,7 @@ func (e SysUser) GetProfile(c *gin.Context) {
 		"user":  sysUser,
 		"roles": roles,
 		"posts": posts,
-	}, "查询成功")
+	}, ginI18n.MustGetMessage(c, "Query successful"))
 }
 
 // GetInfo
