@@ -6,10 +6,10 @@ import (
 	"strings"
 
 	"github.com/gin-gonic/gin"
-	"github.com/go-admin-team/go-admin-core/sdk/api"
-	"github.com/go-admin-team/go-admin-core/sdk/pkg"
-	"github.com/go-admin-team/go-admin-core/sdk/pkg/utils"
 	"github.com/google/uuid"
+	"github.com/nicelizhi/go-admin-core/sdk/api"
+	"github.com/nicelizhi/go-admin-core/sdk/pkg"
+	"github.com/nicelizhi/go-admin-core/sdk/pkg/utils"
 
 	"go-admin/common/file_store"
 )

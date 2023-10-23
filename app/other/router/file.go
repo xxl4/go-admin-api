@@ -1,9 +1,10 @@
 package router
 
 import (
-	"github.com/gin-gonic/gin"
-	jwt "github.com/go-admin-team/go-admin-core/sdk/pkg/jwtauth"
 	"go-admin/app/other/apis"
+
+	"github.com/gin-gonic/gin"
+	jwt "github.com/nicelizhi/go-admin-core/sdk/pkg/jwtauth"
 )
 
 func init() {

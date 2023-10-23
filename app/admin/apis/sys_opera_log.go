@@ -2,12 +2,13 @@ package apis
 
 import (
 	"fmt"
-	"github.com/gin-gonic/gin"
-	"github.com/gin-gonic/gin/binding"
-	"github.com/go-admin-team/go-admin-core/sdk/api"
 	"go-admin/app/admin/models"
 	"go-admin/app/admin/service"
 	"go-admin/app/admin/service/dto"
+
+	"github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin/binding"
+	"github.com/nicelizhi/go-admin-core/sdk/api"
 )
 
 type SysOperaLog struct {
@@ -65,7 +66,7 @@ func (e SysOperaLog) GetPage(c *gin.Context) {
 // @Security Bearer
 func (e SysOperaLog) Get(c *gin.Context) {
 	s := new(service.SysOperaLog)
-	req :=dto.SysOperaLogGetReq{}
+	req := dto.SysOperaLogGetReq{}
 	err := e.MakeContext(c).
 		MakeOrm().
 		Bind(&req, nil).
@@ -96,7 +97,7 @@ func (e SysOperaLog) Get(c *gin.Context) {
 // @Security Bearer
 func (e SysOperaLog) Delete(c *gin.Context) {
 	s := new(service.SysOperaLog)
-	req :=dto.SysOperaLogDeleteReq{}
+	req := dto.SysOperaLogDeleteReq{}
 	err := e.MakeContext(c).
 		MakeOrm().
 		Bind(&req, binding.JSON).
@@ -111,7 +112,7 @@ func (e SysOperaLog) Delete(c *gin.Context) {
 	err = s.Remove(&req)
 	if err != nil {
 		e.Logger.Error(err)
-		e.Error(500,err, fmt.Sprintf("删除失败！错误详情：%s", err.Error()))
+		e.Error(500, err, fmt.Sprintf("删除失败！错误详情：%s", err.Error()))
 		return
 	}
 	e.OK(req.GetId(), "删除成功")
