@@ -109,7 +109,7 @@ require (
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/mojocn/base64Captcha v1.3.1 // indirect
-	github.com/nicelizhi/go-admin-core/plugins/logger/zap v0.0.0-20231016040645-454049fbee93 // indirect
+	github.com/nicelizhi/go-admin-core/plugins/logger/zap v1.6.1 // indirect
 	github.com/nsqio/go-nsq v1.0.8 // indirect
 	github.com/nyaruka/phonenumbers v1.0.55 // indirect
 	github.com/pelletier/go-toml/v2 v2.0.8 // indirect
@@ -129,8 +129,8 @@ require (
 	github.com/ugorji/go/codec v1.2.11 // indirect
 	github.com/urfave/cli v1.22.1 // indirect
 	github.com/yusufpapurcu/wmi v1.2.2 // indirect
-	go.uber.org/atomic v1.6.0 // indirect
-	go.uber.org/multierr v1.5.0 // indirect
+	go.uber.org/atomic v1.11.0 // indirect
+	go.uber.org/multierr v1.11.0 // indirect
 	go.uber.org/zap v1.15.0 // indirect
 	golang.org/x/arch v0.3.0 // indirect
 	golang.org/x/image v0.5.0 // indirect
