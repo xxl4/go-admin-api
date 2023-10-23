@@ -3,6 +3,7 @@ package apis
 import (
 	"net/http"
 
+	ginI18n "github.com/gin-contrib/i18n"
 	"github.com/gin-gonic/gin"
 	"github.com/nicelizhi/go-admin-core/sdk"
 	"github.com/nicelizhi/go-admin-core/sdk/api"
@@ -52,7 +53,7 @@ func (e SysJob) StartJobForService(c *gin.Context) {
 	err = c.BindUri(&v)
 	if err != nil {
 		log.Warnf("参数验证错误, error: %s", err)
-		e.Error(http.StatusUnprocessableEntity, err, "参数验证失败")
+		e.Error(http.StatusUnprocessableEntity, err, ginI18n.MustGetMessage(c, "Parameter validation failed"))
 		return
 	}
 	s := service.SysJob{}
