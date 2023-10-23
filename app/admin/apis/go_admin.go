@@ -9,7 +9,7 @@ const INDEX = `
 <html>
 <head>
 <meta charset="utf-8">
-<title>GO-ADMIN欢迎您</title>
+<title>Welcome</title>
 <style>
 body{
   margin:0; 
@@ -19,7 +19,7 @@ body{
 </style>
 </head>
 <body>
-pls use the api document file <a href="/swagger/admin/index.html">swagger/admin/index.html</a>
+<h2>pls use the api document file <a href="/swagger/admin/index.html">swagger/admin/index.html</a></h2>
 </body>
 </html>
 `
