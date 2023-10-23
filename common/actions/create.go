@@ -40,10 +40,10 @@ func CreateAction(control dto.Control) gin.HandlerFunc {
 		err = db.WithContext(c).Create(object).Error
 		if err != nil {
 			log.Errorf("Create error: %s", err)
-			response.Error(c, 500, err, "创建失败")
+			response.Error(c, 500, err, ginI18n.MustGetMessage(c, "Creation failed"))
 			return
 		}
-		response.OK(c, object.GetId(), "创建成功")
+		response.OK(c, object.GetId(), ginI18n.MustGetMessage(c, "Created successfully"))
 		c.Next()
 	}
 }

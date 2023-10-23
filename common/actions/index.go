@@ -49,10 +49,10 @@ func IndexAction(m models.ActiveRecord, d dto.Index, f func() interface{}) gin.H
 			Count(&count).Error
 		if err != nil && !errors.Is(err, gorm.ErrRecordNotFound) {
 			log.Errorf("MsgID[%s] Index error: %s", msgID, err)
-			response.Error(c, 500, err, "查询失败")
+			response.Error(c, 500, err, ginI18n.MustGetMessage(c, "Query failed"))
 			return
 		}
-		response.PageOK(c, list, int(count), req.GetPageIndex(), req.GetPageSize(), "查询成功")
+		response.PageOK(c, list, int(count), req.GetPageIndex(), req.GetPageSize(), ginI18n.MustGetMessage(c, "Query successful"))
 		c.Next()
 	}
 }

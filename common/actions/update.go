@@ -46,14 +46,14 @@ func UpdateAction(control dto.Control) gin.HandlerFunc {
 		).Where(req.GetId()).Updates(object)
 		if err = db.Error; err != nil {
 			log.Errorf("MsgID[%s] Update error: %s", msgID, err)
-			response.Error(c, 500, err, "更新失败")
+			response.Error(c, 500, err, ginI18n.MustGetMessage(c, "Update failed"))
 			return
 		}
 		if db.RowsAffected == 0 {
 			response.Error(c, http.StatusForbidden, nil, "无权更新该数据")
 			return
 		}
-		response.OK(c, object.GetId(), "更新成功")
+		response.OK(c, object.GetId(), ginI18n.MustGetMessage(c, "Update completed"))
 		c.Next()
 	}
 }

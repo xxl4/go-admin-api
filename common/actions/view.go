@@ -62,7 +62,7 @@ func ViewAction(control dto.Control, f func() interface{}) gin.HandlerFunc {
 			response.Error(c, 500, err, "查看失败")
 			return
 		}
-		response.OK(c, rsp, "查询成功")
+		response.OK(c, rsp, ginI18n.MustGetMessage(c, "Query successful"))
 		c.Next()
 	}
 }

@@ -48,14 +48,14 @@ func DeleteAction(control dto.Control) gin.HandlerFunc {
 		).Where(req.GetId()).Delete(object)
 		if err = db.Error; err != nil {
 			log.Errorf("MsgID[%s] Delete error: %s", msgID, err)
-			response.Error(c, 500, err, "删除失败")
+			response.Error(c, 500, err, ginI18n.MustGetMessage(c, "Failed to delete"))
 			return
 		}
 		if db.RowsAffected == 0 {
 			response.Error(c, http.StatusForbidden, nil, "无权删除该数据")
 			return
 		}
-		response.OK(c, object.GetId(), "删除成功")
+		response.OK(c, object.GetId(), ginI18n.MustGetMessage(c, "Successfully deleted"))
 		c.Next()
 	}
 }
