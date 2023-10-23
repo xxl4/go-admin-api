@@ -1,14 +1,15 @@
 package middleware
 
 import (
-	"github.com/casbin/casbin/v2/util"
 	"net/http"
 
+	"github.com/casbin/casbin/v2/util"
+
 	"github.com/gin-gonic/gin"
-	"github.com/go-admin-team/go-admin-core/sdk"
-	"github.com/go-admin-team/go-admin-core/sdk/api"
-	"github.com/go-admin-team/go-admin-core/sdk/pkg/jwtauth"
-	"github.com/go-admin-team/go-admin-core/sdk/pkg/response"
+	"github.com/nicelizhi/go-admin-core/sdk"
+	"github.com/nicelizhi/go-admin-core/sdk/api"
+	"github.com/nicelizhi/go-admin-core/sdk/pkg/jwtauth"
+	"github.com/nicelizhi/go-admin-core/sdk/pkg/response"
 )
 
 // AuthCheckRole 权限检查中间件

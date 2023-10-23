@@ -1,17 +1,15 @@
 package apis
 
 import (
-	"encoding/base64"
 	"errors"
 	"fmt"
-	"io/ioutil"
 	"strings"
 
 	"github.com/gin-gonic/gin"
-	"github.com/go-admin-team/go-admin-core/sdk/api"
-	"github.com/go-admin-team/go-admin-core/sdk/pkg"
-	"github.com/go-admin-team/go-admin-core/sdk/pkg/utils"
 	"github.com/google/uuid"
+	"github.com/nicelizhi/go-admin-core/sdk/api"
+	"github.com/nicelizhi/go-admin-core/sdk/pkg"
+	"github.com/nicelizhi/go-admin-core/sdk/pkg/utils"
 
 	"go-admin/common/file_store"
 )
@@ -78,7 +76,7 @@ func (e File) UploadFile(c *gin.Context) {
 func (e File) baseImg(c *gin.Context, fileResponse FileResponse, urlPerfix string) FileResponse {
 	files, _ := c.GetPostForm("file")
 	file2list := strings.Split(files, ",")
-	ddd, _ := base64.StdEncoding.DecodeString(file2list[1])
+	//ddd, _ := base64.StdEncoding.DecodeString(file2list[1])
 	guid := uuid.New().String()
 	fileName := guid + ".jpg"
 	err := utils.IsNotExistMkDir(path)
@@ -86,7 +84,7 @@ func (e File) baseImg(c *gin.Context, fileResponse FileResponse, urlPerfix strin
 		e.Error(500, errors.New(""), "初始化文件路径失败")
 	}
 	base64File := path + fileName
-	_ = ioutil.WriteFile(base64File, ddd, 0666)
+	//_ = ioutil.WriteFile(base64File, ddd, 0666)
 	typeStr := strings.Replace(strings.Replace(file2list[0], "data:", "", -1), ";base64", "", -1)
 	fileResponse = FileResponse{
 		Size:     pkg.GetFileSize(base64File),

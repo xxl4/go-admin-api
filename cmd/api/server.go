@@ -3,19 +3,20 @@ package api
 import (
 	"context"
 	"fmt"
-	"github.com/go-admin-team/go-admin-core/sdk/runtime"
 	"log"
 	"net/http"
 	"os"
 	"os/signal"
 	"time"
 
+	"github.com/nicelizhi/go-admin-core/sdk/runtime"
+
 	"github.com/gin-gonic/gin"
-	"github.com/go-admin-team/go-admin-core/config/source/file"
-	"github.com/go-admin-team/go-admin-core/sdk"
-	"github.com/go-admin-team/go-admin-core/sdk/api"
-	"github.com/go-admin-team/go-admin-core/sdk/config"
-	"github.com/go-admin-team/go-admin-core/sdk/pkg"
+	"github.com/nicelizhi/go-admin-core/config/source/file"
+	"github.com/nicelizhi/go-admin-core/sdk"
+	"github.com/nicelizhi/go-admin-core/sdk/api"
+	"github.com/nicelizhi/go-admin-core/sdk/config"
+	"github.com/nicelizhi/go-admin-core/sdk/pkg"
 	"github.com/spf13/cobra"
 
 	"go-admin/app/admin/models"

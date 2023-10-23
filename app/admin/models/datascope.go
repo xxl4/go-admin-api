@@ -2,11 +2,12 @@ package models
 
 import (
 	"errors"
-	"github.com/go-admin-team/go-admin-core/sdk/pkg"
+
+	"github.com/nicelizhi/go-admin-core/sdk/pkg"
 	"gorm.io/gorm"
 
-	log "github.com/go-admin-team/go-admin-core/logger"
-	"github.com/go-admin-team/go-admin-core/sdk/config"
+	log "github.com/nicelizhi/go-admin-core/logger"
+	"github.com/nicelizhi/go-admin-core/sdk/config"
 )
 
 type DataPermission struct {

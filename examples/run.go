@@ -1,15 +1,17 @@
+//go:build examples
 // +build examples
 
 package main
 
 import (
-	"github.com/go-admin-team/go-admin-core/sdk"
 	"log"
+
+	"github.com/nicelizhi/go-admin-core/sdk"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 
-	myCasbin "github.com/go-admin-team/go-admin-core/sdk/pkg/casbin"
+	myCasbin "github.com/nicelizhi/go-admin-core/sdk/pkg/casbin"
 	"gorm.io/driver/mysql"
 )
 

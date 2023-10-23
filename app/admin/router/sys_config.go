@@ -5,7 +5,7 @@ import (
 	"go-admin/common/middleware"
 
 	"github.com/gin-gonic/gin"
-	jwt "github.com/go-admin-team/go-admin-core/sdk/pkg/jwtauth"
+	jwt "github.com/nicelizhi/go-admin-core/sdk/pkg/jwtauth"
 )
 
 func init() {

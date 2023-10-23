@@ -1,10 +1,11 @@
 package apis
 
 import (
+	"go-admin/app/admin/models"
+
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
-	"github.com/go-admin-team/go-admin-core/sdk/api"
-	"go-admin/app/admin/models"
+	"github.com/nicelizhi/go-admin-core/sdk/api"
 
 	"go-admin/app/admin/service"
 	"go-admin/app/admin/service/dto"
@@ -29,7 +30,7 @@ type SysLoginLog struct {
 // @Security Bearer
 func (e SysLoginLog) GetPage(c *gin.Context) {
 	s := service.SysLoginLog{}
-	req :=dto.SysLoginLogGetPageReq{}
+	req := dto.SysLoginLogGetPageReq{}
 	err := e.MakeContext(c).
 		MakeOrm().
 		Bind(&req, binding.Form).
@@ -60,7 +61,7 @@ func (e SysLoginLog) GetPage(c *gin.Context) {
 // @Security Bearer
 func (e SysLoginLog) Get(c *gin.Context) {
 	s := service.SysLoginLog{}
-	req :=dto.SysLoginLogGetReq{}
+	req := dto.SysLoginLogGetReq{}
 	err := e.MakeContext(c).
 		MakeOrm().
 		Bind(&req).
@@ -90,7 +91,7 @@ func (e SysLoginLog) Get(c *gin.Context) {
 // @Security Bearer
 func (e SysLoginLog) Delete(c *gin.Context) {
 	s := service.SysLoginLog{}
-	req :=dto.SysLoginLogDeleteReq{}
+	req := dto.SysLoginLogDeleteReq{}
 	err := e.MakeContext(c).
 		MakeOrm().
 		Bind(&req, binding.JSON, nil).

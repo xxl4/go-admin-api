@@ -4,10 +4,10 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/go-admin-team/go-admin-core/sdk/api"
-	"github.com/go-admin-team/go-admin-core/sdk/pkg"
-	"github.com/go-admin-team/go-admin-core/sdk/pkg/jwtauth/user"
-	"github.com/go-admin-team/go-admin-core/sdk/pkg/response"
+	"github.com/nicelizhi/go-admin-core/sdk/api"
+	"github.com/nicelizhi/go-admin-core/sdk/pkg"
+	"github.com/nicelizhi/go-admin-core/sdk/pkg/jwtauth/user"
+	"github.com/nicelizhi/go-admin-core/sdk/pkg/response"
 
 	"go-admin/common/dto"
 	"go-admin/common/models"
