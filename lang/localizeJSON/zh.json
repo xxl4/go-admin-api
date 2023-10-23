@@ -6,5 +6,13 @@
     "Query successful": "查询成功",
     "Successfully deleted": "删除成功",
     "Failed to delete": "删除失败",
+    "Service initialization failed": "服务初始化失败！",
+    "Update failed": "更新失败",
+    "Update completed": "更新成功",
+    "Creation failed": "创建失败",
+    "Created successfully": "创建成功",
+    "Failed to obtain verification code": "验证码获取失败",
+    "Failed to delete! Error details": "删除失败！错误详情：%s",
+    "Failed to create dictionary type details": "创建字典类型失败，详情：%s",
     "Initialization file path failed": "初始化文件路径失败"
 }
