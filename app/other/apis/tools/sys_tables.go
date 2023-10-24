@@ -74,7 +74,7 @@ func (e SysTable) Get(c *gin.Context) {
 	db, err := e.GetOrm()
 	if err != nil {
 		log.Errorf("get db connection error, %s", err.Error())
-		e.Error(500, err, "数据库连接获取失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Database connection acquisition failed"))
 		return
 	}
 
@@ -99,7 +99,7 @@ func (e SysTable) GetSysTablesInfo(c *gin.Context) {
 	db, err := e.GetOrm()
 	if err != nil {
 		log.Errorf("get db connection error, %s", err.Error())
-		e.Error(500, err, "数据库连接获取失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Database connection acquisition failed"))
 		return
 	}
 
@@ -128,7 +128,7 @@ func (e SysTable) GetSysTablesTree(c *gin.Context) {
 	db, err := e.GetOrm()
 	if err != nil {
 		log.Errorf("get db connection error, %s", err.Error())
-		e.Error(500, err, "数据库连接获取失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Database connection acquisition failed"))
 		return
 	}
 
@@ -160,7 +160,7 @@ func (e SysTable) Insert(c *gin.Context) {
 	db, err := e.GetOrm()
 	if err != nil {
 		log.Errorf("get db connection error, %s", err.Error())
-		e.Error(500, err, "数据库连接获取失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Database connection acquisition failed"))
 		return
 	}
 
@@ -318,7 +318,7 @@ func (e SysTable) Update(c *gin.Context) {
 	db, err := e.GetOrm()
 	if err != nil {
 		log.Errorf("get db connection error, %s", err.Error())
-		e.Error(500, err, "数据库连接获取失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Database connection acquisition failed"))
 		return
 	}
 
@@ -346,7 +346,7 @@ func (e SysTable) Delete(c *gin.Context) {
 	db, err := e.GetOrm()
 	if err != nil {
 		log.Errorf("get db connection error, %s", err.Error())
-		e.Error(500, err, "数据库连接获取失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Database connection acquisition failed"))
 		return
 	}
 

@@ -7,6 +7,8 @@ import (
 
 	"go-admin/common/global"
 
+	ginI18n "github.com/gin-contrib/i18n"
+
 	"github.com/gin-gonic/gin"
 	"github.com/mssola/user_agent"
 	"github.com/nicelizhi/go-admin-core/sdk"
@@ -66,7 +68,7 @@ func Authenticator(c *gin.Context) (interface{}, error) {
 	db, err := pkg.GetOrm(c)
 	if err != nil {
 		log.Errorf("get db error, %s", err.Error())
-		response.Error(c, 500, err, "数据库连接获取失败")
+		response.Error(c, 500, err, ginI18n.MustGetMessage(c, "Database connection acquisition failed"))
 		return nil, jwt.ErrFailedAuthentication
 	}
 

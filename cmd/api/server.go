@@ -60,7 +60,7 @@ func init() {
 	AppRouters = append(AppRouters, router.InitRouter)
 
 	// config the timezone
-	os.Setenv("TZ", config.ApplicationConfig.TimeZone)
+	//os.Setenv("TZ", config.ApplicationConfig.TimeZone)
 }
 
 func setup() {
@@ -164,8 +164,8 @@ var Router runtime.Router
 func tip() {
 	usageStr := `欢迎使用 ` + pkg.Green(`go-admin api `+global.Version) + ` 可以使用 ` + pkg.Red(`-h`) + ` 查看命令`
 	fmt.Printf("%s \n\n", usageStr)
-	systemStr := `您的 timezone ` + pkg.Green(config.ApplicationConfig.TimeZone) + ` local 为` + pkg.Red(config.ApplicationConfig.Locale)
-	fmt.Printf("%s \n\n", systemStr)
+	//systemStr := `您的 timezone ` + pkg.Green(config.ApplicationConfig.TimeZone) + ` local 为` + pkg.Red(config.ApplicationConfig.Locale)
+	//fmt.Printf("%s \n\n", systemStr)
 }
 
 func initRouter() {
