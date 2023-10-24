@@ -5,7 +5,7 @@ go 1.18
 require (
 	github.com/alibaba/sentinel-golang v1.0.4
 	github.com/alibaba/sentinel-golang/pkg/adapters/gin v0.0.0-20220808015021-c5f1f1d055c5
-	github.com/aliyun/aliyun-oss-go-sdk v0.0.0-20190307165228-86c17b95fcd5
+	github.com/aliyun/aliyun-oss-go-sdk v2.2.9+incompatible
 	github.com/bitly/go-simplejson v0.5.0
 	github.com/bytedance/go-tagexpr/v2 v2.7.12
 	github.com/casbin/casbin/v2 v2.54.0
@@ -40,7 +40,6 @@ require (
 	github.com/KyleBanks/depth v1.2.1 // indirect
 	github.com/PuerkitoBio/purell v1.1.1 // indirect
 	github.com/PuerkitoBio/urlesc v0.0.0-20170810143723-de5bf2ad4578 // indirect
-	github.com/baiyubin/aliyun-sts-go-sdk v0.0.0-20180326062324-cfa1a18b161f // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/bsm/redislock v0.8.2 // indirect
 	github.com/bytedance/sonic v1.9.1 // indirect
