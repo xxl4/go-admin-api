@@ -30,6 +30,10 @@ The front-end and back-end separation authority management system based on Gin +
 
 - Multi-command mode
 
+- Multi Language
+
+- TimeZone Support
+
 - TODO: unit test
 
 
