@@ -1,6 +1,6 @@
 
 # go-admin
-[![Build Status](https://github.com/nicelizhi/go-admin-api/workflows/build/badge.svg)](https://github.com/nicelizhi/go-admin-api)
+[![Build Status](https://github.com/nicelizhi/go-admin-api/workflows/Build/badge.svg)](https://github.com/nicelizhi/go-admin-api)
 [![Release](https://img.shields.io/github/release/nicelizhi/go-admin-api.svg?style=flat-square)](https://github.com/nicelizhi/go-admin-api/releases)
 [![License](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/nicelizhi/go-admin-api)
 
