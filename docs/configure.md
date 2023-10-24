@@ -1,3 +1,6 @@
+# go-admin configure
+
+```
 settings:
   application:
     # dev开发环境 test测试环境 prod线上环境
@@ -49,10 +52,12 @@ settings:
     # 代码生成读取的数据库名称
     dbname: dbname
     # 代码生成是使用前端代码存放位置，需要指定到src文件夹，相对路径
-    frontpath: ../admin-ui/src
+    frontpath: ../go-admin-ui/src
   queue:
     memory:
       poolSize: 100
   extend: # 扩展项使用说明
     demo:
       name: data
+
+```
