@@ -1,0 +1,4 @@
+[submodule "admin-ui"]
+	path = admin-ui
+	url = https://github.com/nicelizhi/go-admin-ui.git
+	branch = v1.0.0

@@ -13,7 +13,7 @@ settings:
     source: ./go-admin-db.db
   gen:
     dbname: testhhh
-    frontpath: ../go-admin-ui/src
+    frontpath: ../admin-ui/src
   jwt:
     secret: go-admin
     timeout: 3600
