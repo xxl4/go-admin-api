@@ -7,6 +7,7 @@ import (
 
 	"go-admin/app/admin/models"
 
+	ginI18n "github.com/gin-contrib/i18n"
 	"github.com/gin-gonic/gin/binding"
 	"github.com/nicelizhi/go-admin-core/sdk"
 
@@ -54,11 +55,11 @@ func (e SysRole) GetPage(c *gin.Context) {
 
 	err = s.GetPage(&req, &list, &count)
 	if err != nil {
-		e.Error(500, err, "查询失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Query failed"))
 		return
 	}
 
-	e.PageOK(list, int(count), req.GetPageIndex(), req.GetPageSize(), "查询成功")
+	e.PageOK(list, int(count), req.GetPageIndex(), req.GetPageSize(), ginI18n.MustGetMessage(c, "Query successful"))
 }
 
 // Get
@@ -87,11 +88,11 @@ func (e SysRole) Get(c *gin.Context) {
 
 	err = s.Get(&req, &object)
 	if err != nil {
-		e.Error(http.StatusUnprocessableEntity, err, "查询失败")
+		e.Error(http.StatusUnprocessableEntity, err, ginI18n.MustGetMessage(c, "Query failed"))
 		return
 	}
 
-	e.OK(object, "查询成功")
+	e.OK(object, ginI18n.MustGetMessage(c, "Query successful"))
 }
 
 // Insert
@@ -136,7 +137,7 @@ func (e SysRole) Insert(c *gin.Context) {
 		e.Error(500, err, "创建失败,"+err.Error())
 		return
 	}
-	e.OK(req.GetId(), "创建成功")
+	e.OK(req.GetId(), ginI18n.MustGetMessage(c, "Created successfully"))
 }
 
 // Update 修改用户角色
@@ -179,7 +180,7 @@ func (e SysRole) Update(c *gin.Context) {
 		return
 	}
 
-	e.OK(req.GetId(), "更新成功")
+	e.OK(req.GetId(), ginI18n.MustGetMessage(c, "Update completed"))
 }
 
 // Delete

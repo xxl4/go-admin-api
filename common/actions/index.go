@@ -4,6 +4,7 @@ import (
 	"errors"
 	"net/http"
 
+	ginI18n "github.com/gin-contrib/i18n"
 	"github.com/gin-gonic/gin"
 	log "github.com/nicelizhi/go-admin-core/logger"
 	"github.com/nicelizhi/go-admin-core/sdk/pkg"
@@ -32,7 +33,7 @@ func IndexAction(m models.ActiveRecord, d dto.Index, f func() interface{}) gin.H
 		//查询列表
 		err = req.Bind(c)
 		if err != nil {
-			response.Error(c, http.StatusUnprocessableEntity, err, "参数验证失败")
+			response.Error(c, http.StatusUnprocessableEntity, err, ginI18n.MustGetMessage(c, "Parameter validation failed"))
 			return
 		}
 
@@ -49,10 +50,10 @@ func IndexAction(m models.ActiveRecord, d dto.Index, f func() interface{}) gin.H
 			Count(&count).Error
 		if err != nil && !errors.Is(err, gorm.ErrRecordNotFound) {
 			log.Errorf("MsgID[%s] Index error: %s", msgID, err)
-			response.Error(c, 500, err, "查询失败")
+			response.Error(c, 500, err, ginI18n.MustGetMessage(c, "Query failed"))
 			return
 		}
-		response.PageOK(c, list, int(count), req.GetPageIndex(), req.GetPageSize(), "查询成功")
+		response.PageOK(c, list, int(count), req.GetPageIndex(), req.GetPageSize(), ginI18n.MustGetMessage(c, "Query successful"))
 		c.Next()
 	}
 }

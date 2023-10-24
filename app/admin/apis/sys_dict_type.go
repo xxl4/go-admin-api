@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"go-admin/app/admin/models"
 
+	ginI18n "github.com/gin-contrib/i18n"
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 	"github.com/nicelizhi/go-admin-core/sdk/api"
@@ -47,10 +48,10 @@ func (e SysDictType) GetPage(c *gin.Context) {
 	var count int64
 	err = s.GetPage(&req, &list, &count)
 	if err != nil {
-		e.Error(500, err, "查询失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Query failed"))
 		return
 	}
-	e.PageOK(list, int(count), req.GetPageIndex(), req.GetPageSize(), "查询成功")
+	e.PageOK(list, int(count), req.GetPageIndex(), req.GetPageSize(), ginI18n.MustGetMessage(c, "Query successful"))
 }
 
 // Get 字典类型通过字典id获取
@@ -77,10 +78,10 @@ func (e SysDictType) Get(c *gin.Context) {
 	var object models.SysDictType
 	err = s.Get(&req, &object)
 	if err != nil {
-		e.Error(500, err, "查询失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Query failed"))
 		return
 	}
-	e.OK(object, "查询成功")
+	e.OK(object, ginI18n.MustGetMessage(c, "Query successful"))
 }
 
 // Insert 字典类型创建
@@ -110,10 +111,10 @@ func (e SysDictType) Insert(c *gin.Context) {
 	err = s.Insert(&req)
 	if err != nil {
 		e.Logger.Error(err)
-		e.Error(500, err, fmt.Sprintf(" 创建字典类型失败，详情：%s", err.Error()))
+		e.Error(500, err, fmt.Sprintf(ginI18n.MustGetMessage(c, "Failed to create dictionary type details"), err.Error()))
 		return
 	}
-	e.OK(req.GetId(), "创建成功")
+	e.OK(req.GetId(), ginI18n.MustGetMessage(c, "Created successfully"))
 }
 
 // Update
@@ -145,7 +146,7 @@ func (e SysDictType) Update(c *gin.Context) {
 		e.Logger.Error(err)
 		return
 	}
-	e.OK(req.GetId(), "更新成功")
+	e.OK(req.GetId(), ginI18n.MustGetMessage(c, "Update completed"))
 }
 
 // Delete
@@ -175,7 +176,7 @@ func (e SysDictType) Delete(c *gin.Context) {
 		e.Error(500, err, err.Error())
 		return
 	}
-	e.OK(req.GetId(), "删除成功")
+	e.OK(req.GetId(), ginI18n.MustGetMessage(c, "Successfully deleted"))
 }
 
 // GetAll
@@ -207,5 +208,5 @@ func (e SysDictType) GetAll(c *gin.Context) {
 		e.Error(500, err, err.Error())
 		return
 	}
-	e.OK(list, "查询成功")
+	e.OK(list, ginI18n.MustGetMessage(c, "Query successful"))
 }

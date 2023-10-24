@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"strings"
 
+	ginI18n "github.com/gin-contrib/i18n"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"github.com/nicelizhi/go-admin-core/sdk/api"
@@ -81,7 +82,8 @@ func (e File) baseImg(c *gin.Context, fileResponse FileResponse, urlPerfix strin
 	fileName := guid + ".jpg"
 	err := utils.IsNotExistMkDir(path)
 	if err != nil {
-		e.Error(500, errors.New(""), "初始化文件路径失败")
+		//e.Error(500, errors.New(""), "初始化文件路径失败")
+		e.Error(500, errors.New(""), ginI18n.MustGetMessage(c, "Initialization file path failed"))
 	}
 	base64File := path + fileName
 	//_ = ioutil.WriteFile(base64File, ddd, 0666)
@@ -96,7 +98,8 @@ func (e File) baseImg(c *gin.Context, fileResponse FileResponse, urlPerfix strin
 	source, _ := c.GetPostForm("source")
 	err = thirdUpload(source, fileName, base64File)
 	if err != nil {
-		e.Error(200, errors.New(""), "上传第三方失败")
+		//e.Error(200, errors.New(""), "上传第三方失败")
+		e.Error(200, errors.New(""), ginI18n.MustGetMessage(c, "Failed to upload third party"))
 		return fileResponse
 	}
 	if source != "1" {
@@ -116,7 +119,8 @@ func (e File) multipleFile(c *gin.Context, urlPerfix string) []FileResponse {
 
 		err := utils.IsNotExistMkDir(path)
 		if err != nil {
-			e.Error(500, errors.New(""), "初始化文件路径失败")
+			//e.Error(500, errors.New(""), "初始化文件路径失败")
+			e.Error(500, errors.New(""), ginI18n.MustGetMessage(c, "Initialization file path failed"))
 		}
 		multipartFileName := path + fileName
 		err1 := c.SaveUploadedFile(f, multipartFileName)
@@ -124,7 +128,7 @@ func (e File) multipleFile(c *gin.Context, urlPerfix string) []FileResponse {
 		if err1 == nil {
 			err := thirdUpload(source, fileName, multipartFileName)
 			if err != nil {
-				e.Error(500, errors.New(""), "上传第三方失败")
+				e.Error(500, errors.New(""), ginI18n.MustGetMessage(c, "Failed to upload third party"))
 			} else {
 				fileResponse := FileResponse{
 					Size:     pkg.GetFileSize(multipartFileName),
@@ -148,7 +152,7 @@ func (e File) singleFile(c *gin.Context, fileResponse FileResponse, urlPerfix st
 	files, err := c.FormFile("file")
 
 	if err != nil {
-		e.Error(200, errors.New(""), "图片不能为空")
+		e.Error(200, errors.New(""), ginI18n.MustGetMessage(c, "Picture cannot be empty"))
 		return FileResponse{}, true
 	}
 	// 上传文件至指定目录
@@ -158,7 +162,8 @@ func (e File) singleFile(c *gin.Context, fileResponse FileResponse, urlPerfix st
 
 	err = utils.IsNotExistMkDir(path)
 	if err != nil {
-		e.Error(500, errors.New(""), "初始化文件路径失败")
+		//e.Error(500, errors.New(""), "初始化文件路径失败")
+		e.Error(500, errors.New(""), ginI18n.MustGetMessage(c, "Initialization file path failed"))
 	}
 	singleFile := path + fileName
 	_ = c.SaveUploadedFile(files, singleFile)

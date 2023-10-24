@@ -3,6 +3,7 @@ package actions
 import (
 	"net/http"
 
+	ginI18n "github.com/gin-contrib/i18n"
 	"github.com/gin-gonic/gin"
 	log "github.com/nicelizhi/go-admin-core/logger"
 	"github.com/nicelizhi/go-admin-core/sdk/pkg"
@@ -28,13 +29,13 @@ func DeleteAction(control dto.Control) gin.HandlerFunc {
 		err = req.Bind(c)
 		if err != nil {
 			log.Errorf("MsgID[%s] Bind error: %s", msgID, err)
-			response.Error(c, http.StatusUnprocessableEntity, err, "参数验证失败")
+			response.Error(c, http.StatusUnprocessableEntity, err, ginI18n.MustGetMessage(c, "Parameter validation failed"))
 			return
 		}
 		var object models.ActiveRecord
 		object, err = req.GenerateM()
 		if err != nil {
-			response.Error(c, 500, err, "模型生成失败")
+			response.Error(c, 500, err, ginI18n.MustGetMessage(c, "Model generation failed"))
 			return
 		}
 
@@ -48,14 +49,14 @@ func DeleteAction(control dto.Control) gin.HandlerFunc {
 		).Where(req.GetId()).Delete(object)
 		if err = db.Error; err != nil {
 			log.Errorf("MsgID[%s] Delete error: %s", msgID, err)
-			response.Error(c, 500, err, "删除失败")
+			response.Error(c, 500, err, ginI18n.MustGetMessage(c, "Failed to delete"))
 			return
 		}
 		if db.RowsAffected == 0 {
-			response.Error(c, http.StatusForbidden, nil, "无权删除该数据")
+			response.Error(c, http.StatusForbidden, nil, ginI18n.MustGetMessage(c, "No right to delete this data"))
 			return
 		}
-		response.OK(c, object.GetId(), "删除成功")
+		response.OK(c, object.GetId(), ginI18n.MustGetMessage(c, "Successfully deleted"))
 		c.Next()
 	}
 }

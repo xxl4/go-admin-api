@@ -1,6 +1,7 @@
 package apis
 
 import (
+	ginI18n "github.com/gin-contrib/i18n"
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 	"github.com/nicelizhi/go-admin-core/sdk/api"
@@ -45,10 +46,10 @@ func (e SysConfig) GetPage(c *gin.Context) {
 	var count int64
 	err = s.GetPage(&req, &list, &count)
 	if err != nil {
-		e.Error(500, err, "查询失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Query failed"))
 		return
 	}
-	e.PageOK(list, int(count), req.GetPageIndex(), req.GetPageSize(), "查询成功")
+	e.PageOK(list, int(count), req.GetPageIndex(), req.GetPageSize(), ginI18n.MustGetMessage(c, "Query successful"))
 }
 
 // Get 获取配置管理
@@ -80,7 +81,7 @@ func (e SysConfig) Get(c *gin.Context) {
 		return
 	}
 
-	e.OK(object, "查询成功")
+	e.OK(object, ginI18n.MustGetMessage(c, "Query successful"))
 }
 
 // Insert 创建配置管理
@@ -90,7 +91,7 @@ func (e SysConfig) Get(c *gin.Context) {
 // @Accept application/json
 // @Product application/json
 // @Param data body dto.SysConfigControl true "body"
-// @Success 200 {object} response.Response	"{"code": 200, "message": "创建成功"}"
+// @Success 200 {object} response.Response	"{"code": 200, "message": ginI18n.MustGetMessage(c, "Created successfully")}"
 // @Router /api/v1/sys-config [post]
 // @Security Bearer
 func (e SysConfig) Insert(c *gin.Context) {
@@ -110,10 +111,10 @@ func (e SysConfig) Insert(c *gin.Context) {
 
 	err = s.Insert(&req)
 	if err != nil {
-		e.Error(500, err, "创建失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Creation failed"))
 		return
 	}
-	e.OK(req.GetId(), "创建成功")
+	e.OK(req.GetId(), ginI18n.MustGetMessage(c, "Created successfully"))
 }
 
 // Update 修改配置管理
@@ -123,7 +124,7 @@ func (e SysConfig) Insert(c *gin.Context) {
 // @Accept application/json
 // @Product application/json
 // @Param data body dto.SysConfigControl true "body"
-// @Success 200 {object} response.Response	"{"code": 200, "message": "修改成功"}"
+// @Success 200 {object} response.Response	"{"code": 200, "message": ginI18n.MustGetMessage(c, "Update completed")}"
 // @Router /api/v1/sys-config/{id} [put]
 // @Security Bearer
 func (e SysConfig) Update(c *gin.Context) {
@@ -142,10 +143,10 @@ func (e SysConfig) Update(c *gin.Context) {
 	req.SetUpdateBy(user.GetUserId(c))
 	err = s.Update(&req)
 	if err != nil {
-		e.Error(500, err, "更新失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Update failed"))
 		return
 	}
-	e.OK(req.GetId(), "更新成功")
+	e.OK(req.GetId(), ginI18n.MustGetMessage(c, "Update completed"))
 }
 
 // Delete 删除配置管理
@@ -153,7 +154,7 @@ func (e SysConfig) Update(c *gin.Context) {
 // @Description 删除配置管理
 // @Tags 配置管理
 // @Param ids body []int false "ids"
-// @Success 200 {object} response.Response	"{"code": 200, "message": "删除成功"}"
+// @Success 200 {object} response.Response	"{"code": 200, "message": ginI18n.MustGetMessage(c, "Successfully deleted")}"
 // @Router /api/v1/sys-config [delete]
 // @Security Bearer
 func (e SysConfig) Delete(c *gin.Context) {
@@ -173,10 +174,10 @@ func (e SysConfig) Delete(c *gin.Context) {
 
 	err = s.Remove(&req)
 	if err != nil {
-		e.Error(500, err, "删除失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Failed to delete"))
 		return
 	}
-	e.OK(req.GetId(), "删除成功")
+	e.OK(req.GetId(), ginI18n.MustGetMessage(c, "Successfully deleted"))
 }
 
 // Get2SysApp 获取系统配置信息
@@ -202,7 +203,7 @@ func (e SysConfig) Get2SysApp(c *gin.Context) {
 	list := make([]models.SysConfig, 0)
 	err = s.GetWithKeyList(&req, &list)
 	if err != nil {
-		e.Error(500, err, "查询失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Query failed"))
 		return
 	}
 	mp := make(map[string]string)
@@ -212,7 +213,7 @@ func (e SysConfig) Get2SysApp(c *gin.Context) {
 			mp[key] = list[i].ConfigValue
 		}
 	}
-	e.OK(mp, "查询成功")
+	e.OK(mp, ginI18n.MustGetMessage(c, "Query successful"))
 }
 
 // Get2Set 获取配置
@@ -221,7 +222,7 @@ func (e SysConfig) Get2SysApp(c *gin.Context) {
 // @Tags 配置管理
 // @Accept application/json
 // @Product application/json
-// @Success 200 {object} response.Response{data=map[string]interface{}}	"{"code": 200, "message": "修改成功"}"
+// @Success 200 {object} response.Response{data=map[string]interface{}}	"{"code": 200, "message": ginI18n.MustGetMessage(c, "Update completed")}"
 // @Router /api/v1/set-config [get]
 // @Security Bearer
 func (e SysConfig) Get2Set(c *gin.Context) {
@@ -238,14 +239,14 @@ func (e SysConfig) Get2Set(c *gin.Context) {
 	}
 	err = s.GetForSet(&req)
 	if err != nil {
-		e.Error(500, err, "查询失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Query failed"))
 		return
 	}
 	m := make(map[string]interface{}, 0)
 	for _, v := range req {
 		m[v.ConfigKey] = v.ConfigValue
 	}
-	e.OK(m, "查询成功")
+	e.OK(m, ginI18n.MustGetMessage(c, "Query successful"))
 }
 
 // Update2Set 设置配置
@@ -255,7 +256,7 @@ func (e SysConfig) Get2Set(c *gin.Context) {
 // @Accept application/json
 // @Product application/json
 // @Param data body []dto.GetSetSysConfigReq true "body"
-// @Success 200 {object} response.Response	"{"code": 200, "message": "修改成功"}"
+// @Success 200 {object} response.Response	"{"code": 200, "message": ginI18n.MustGetMessage(c, "Update completed")}"
 // @Router /api/v1/set-config [put]
 // @Security Bearer
 func (e SysConfig) Update2Set(c *gin.Context) {
@@ -278,7 +279,7 @@ func (e SysConfig) Update2Set(c *gin.Context) {
 		return
 	}
 
-	e.OK("", "更新成功")
+	e.OK("", ginI18n.MustGetMessage(c, "Update completed"))
 }
 
 // GetSysConfigByKEYForService 根据Key获取SysConfig的Service

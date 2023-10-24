@@ -3,6 +3,7 @@ package apis
 import (
 	"go-admin/app/admin/models"
 
+	ginI18n "github.com/gin-contrib/i18n"
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 	"github.com/nicelizhi/go-admin-core/sdk/api"
@@ -47,11 +48,11 @@ func (e SysDictData) GetPage(c *gin.Context) {
 	var count int64
 	err = s.GetPage(&req, &list, &count)
 	if err != nil {
-		e.Error(500, err, "查询失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Query failed"))
 		return
 	}
 
-	e.PageOK(list, int(count), req.GetPageIndex(), req.GetPageSize(), "查询成功")
+	e.PageOK(list, int(count), req.GetPageIndex(), req.GetPageSize(), ginI18n.MustGetMessage(c, "Query successful"))
 }
 
 // Get
@@ -81,11 +82,11 @@ func (e SysDictData) Get(c *gin.Context) {
 	err = s.Get(&req, &object)
 	if err != nil {
 		e.Logger.Warnf("Get error: %s", err.Error())
-		e.Error(500, err, "查询失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Query failed"))
 		return
 	}
 
-	e.OK(object, "查询成功")
+	e.OK(object, ginI18n.MustGetMessage(c, "Query successful"))
 }
 
 // Insert
@@ -114,11 +115,11 @@ func (e SysDictData) Insert(c *gin.Context) {
 	req.SetCreateBy(user.GetUserId(c))
 	err = s.Insert(&req)
 	if err != nil {
-		e.Error(500, err, "创建失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Creation failed"))
 		return
 	}
 
-	e.OK(req.GetId(), "创建成功")
+	e.OK(req.GetId(), ginI18n.MustGetMessage(c, "Created successfully"))
 }
 
 // Update
@@ -128,7 +129,7 @@ func (e SysDictData) Insert(c *gin.Context) {
 // @Accept  application/json
 // @Product application/json
 // @Param data body dto.SysDictDataUpdateReq true "body"
-// @Success 200 {object} response.Response	"{"code": 200, "message": "修改成功"}"
+// @Success 200 {object} response.Response	"{"code": 200, "message": ginI18n.MustGetMessage(c, "Update completed")}"
 // @Router /api/v1/dict/data/{dictCode} [put]
 // @Security Bearer
 func (e SysDictData) Update(c *gin.Context) {
@@ -147,10 +148,10 @@ func (e SysDictData) Update(c *gin.Context) {
 	req.SetUpdateBy(user.GetUserId(c))
 	err = s.Update(&req)
 	if err != nil {
-		e.Error(500, err, "更新失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Update failed"))
 		return
 	}
-	e.OK(req.GetId(), "更新成功")
+	e.OK(req.GetId(), ginI18n.MustGetMessage(c, "Update completed"))
 }
 
 // Delete
@@ -158,7 +159,7 @@ func (e SysDictData) Update(c *gin.Context) {
 // @Description 删除数据
 // @Tags 字典数据
 // @Param dictCode body dto.SysDictDataDeleteReq true "body"
-// @Success 200 {object} response.Response	"{"code": 200, "message": "删除成功"}"
+// @Success 200 {object} response.Response	"{"code": 200, "message": ginI18n.MustGetMessage(c, "Successfully deleted")}"
 // @Router /api/v1/dict/data [delete]
 // @Security Bearer
 func (e SysDictData) Delete(c *gin.Context) {
@@ -177,10 +178,10 @@ func (e SysDictData) Delete(c *gin.Context) {
 	req.SetUpdateBy(user.GetUserId(c))
 	err = s.Remove(&req)
 	if err != nil {
-		e.Error(500, err, "删除失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Failed to delete"))
 		return
 	}
-	e.OK(req.GetId(), "删除成功")
+	e.OK(req.GetId(), ginI18n.MustGetMessage(c, "Successfully deleted"))
 }
 
 // GetAll 数据字典根据key获取 业务页面使用
@@ -207,7 +208,7 @@ func (e SysDictData) GetAll(c *gin.Context) {
 	list := make([]models.SysDictData, 0)
 	err = s.GetAll(&req, &list)
 	if err != nil {
-		e.Error(500, err, "查询失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Query failed"))
 		return
 	}
 	l := make([]dto.SysDictDataGetAllResp, 0)
@@ -217,5 +218,5 @@ func (e SysDictData) GetAll(c *gin.Context) {
 		l = append(l, d)
 	}
 
-	e.OK(l, "查询成功")
+	e.OK(l, ginI18n.MustGetMessage(c, "Query successful"))
 }

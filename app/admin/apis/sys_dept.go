@@ -3,6 +3,7 @@ package apis
 import (
 	"go-admin/app/admin/models"
 
+	ginI18n "github.com/gin-contrib/i18n"
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 	"github.com/nicelizhi/go-admin-core/sdk/api"
@@ -44,10 +45,10 @@ func (e SysDept) GetPage(c *gin.Context) {
 	list := make([]models.SysDept, 0)
 	list, err = s.SetDeptPage(&req)
 	if err != nil {
-		e.Error(500, err, "查询失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Query failed"))
 		return
 	}
-	e.OK(list, "查询成功")
+	e.OK(list, ginI18n.MustGetMessage(c, "Query successful"))
 }
 
 // Get
@@ -75,11 +76,11 @@ func (e SysDept) Get(c *gin.Context) {
 
 	err = s.Get(&req, &object)
 	if err != nil {
-		e.Error(500, err, "查询失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Query failed"))
 		return
 	}
 
-	e.OK(object, "查询成功")
+	e.OK(object, ginI18n.MustGetMessage(c, "Query successful"))
 }
 
 // Insert 添加部门
@@ -111,10 +112,10 @@ func (e SysDept) Insert(c *gin.Context) {
 	req.SetCreateBy(user.GetUserId(c))
 	err = s.Insert(&req)
 	if err != nil {
-		e.Error(500, err, "创建失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Creation failed"))
 		return
 	}
-	e.OK(req.GetId(), "创建成功")
+	e.OK(req.GetId(), ginI18n.MustGetMessage(c, "Created successfully"))
 }
 
 // Update
@@ -148,7 +149,7 @@ func (e SysDept) Update(c *gin.Context) {
 		e.Error(500, err, err.Error())
 		return
 	}
-	e.OK(req.GetId(), "更新成功")
+	e.OK(req.GetId(), ginI18n.MustGetMessage(c, "Update completed"))
 }
 
 // Delete
@@ -156,8 +157,8 @@ func (e SysDept) Update(c *gin.Context) {
 // @Description 删除数据
 // @Tags 部门
 // @Param data body dto.SysDeptDeleteReq true "body"
-// @Success 200 {string} string	"{"code": 200, "message": "删除成功"}"
-// @Success 200 {string} string	"{"code": -1, "message": "删除失败"}"
+// @Success 200 {string} string	"{"code": 200, "message": ginI18n.MustGetMessage(c, "Successfully deleted")}"
+// @Success 200 {string} string	"{"code": -1, "message": ginI18n.MustGetMessage(c, "Failed to delete")}"
 // @Router /api/v1/dept [delete]
 // @Security Bearer
 func (e SysDept) Delete(c *gin.Context) {
@@ -176,10 +177,10 @@ func (e SysDept) Delete(c *gin.Context) {
 
 	err = s.Remove(&req)
 	if err != nil {
-		e.Error(500, err, "删除失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Failed to delete"))
 		return
 	}
-	e.OK(req.GetId(), "删除成功")
+	e.OK(req.GetId(), ginI18n.MustGetMessage(c, "Successfully deleted"))
 }
 
 // Get2Tree 用户管理 左侧部门树
@@ -199,7 +200,7 @@ func (e SysDept) Get2Tree(c *gin.Context) {
 	list := make([]dto.DeptLabel, 0)
 	list, err = s.SetDeptTree(&req)
 	if err != nil {
-		e.Error(500, err, "查询失败")
+		e.Error(500, err, ginI18n.MustGetMessage(c, "Query failed"))
 		return
 	}
 	e.OK(list, "")
