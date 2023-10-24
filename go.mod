@@ -13,7 +13,7 @@ require (
 	github.com/gin-gonic/gin v1.9.1
 	github.com/google/uuid v1.3.1
 	github.com/huaweicloud/huaweicloud-sdk-go-obs v3.21.12+incompatible
-	github.com/mssola/user_agent v0.5.2
+	github.com/mssola/user_agent v0.6.0
 	github.com/nicelizhi/go-admin-core v1.6.2
 	github.com/nicelizhi/go-admin-core/sdk v1.6.2
 	github.com/opentracing/opentracing-go v1.1.0
