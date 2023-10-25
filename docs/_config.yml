@@ -7,6 +7,15 @@ safe: true
 source: [/]
 incremental: false
 highlighter: rouge
+page_excerpts: true
+google_analytics: G-Z7L6BT187M
+is_project_page: true
+url: https://nicelizhi.github.io/go-admin-api
+paginate: 5
+site:
+  categories: CATEGORY
+  tags: TAG
+  pages: []
 gist:
   noscript: false
 kramdown:
