@@ -1,4 +1,7 @@
 theme: jekyll-theme-cayman
+show_downloads: true
+title: Go Admin Service
+description: Build a full-featured administrative interface quickly Go-Admin
 lsi: false
 safe: true
 source: [/]
