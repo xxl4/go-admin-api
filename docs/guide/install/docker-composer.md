@@ -1,3 +1,10 @@
+# Docker Install go-admin
+> Build a full-featured administrative interface quickly Go-Admin
+
+### 1、Ready
+
+> docker-compose.yaml (MySQL Version)
+```
 version: '3.8'
 services:
   go-admin-api:
@@ -28,6 +35,28 @@ services:
       - ./data/my.cnf:/etc/mysql/my.cnf
     networks:
       - kuops
+networks:
+  kuops:
+    driver: bridge
+```
+
+> docker-compose.yaml (PG Version)
+```
+version: '3.8'
+services:
+  go-admin-api:
+    container_name: go-admin-api
+    image: registry.ap-southeast-1.aliyuncs.com/kuops/go-admin-api:latest
+    privileged: true
+    restart: always
+    ports:
+      - 8000:8000
+    volumes:
+      - ./config/:/go-admin-api/config/
+      - ./static/:/go-admin-api/static/
+      - ./temp/:/go-admin-api/temp/
+    networks:
+      - kuops
   postgres:
     image: postgres:14.1-alpine
     healthcheck:
@@ -49,4 +78,25 @@ services:
 networks:
   kuops:
     driver: bridge
+```
+### 2、Configure
+
+[Configure Docs](https://nicelizhi.github.io/go-admin-api/guide/configure/)
+
+### 3、Start It
+
+> You need have setting.yml file in ./config dir
+```
+docker run --name api-admin -p 8000:8000 -v ./config:/go-admin-api/config/ -d registry.ap-southeast-1.aliyuncs.com/kuops/go-admin-api:latest
+```
+
+### 4、Test it
+
+```
+docker exec -it api-admin bash 
+netstat -an | grep 8000
+```
+
+### Issue Submit
+https://github.com/nicelizhi/go-admin-api/issues
 

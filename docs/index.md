@@ -64,6 +64,8 @@ swag init --parseDependency --parseDepth=6 --instanceName admin -o ./docs/admin
 
 [Docker Install](https://nicelizhi.github.io/go-admin-api/guide/install/docker)
 
+[Docker Composer Install](https://nicelizhi.github.io/go-admin-api/guide/install/docker-composer)
+
 [K8s Install](https://nicelizhi.github.io/go-admin-api/guide/install/k8s)
 
 [Binary Install](https://nicelizhi.github.io/go-admin-api/guide/install/binary)
