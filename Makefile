@@ -1,8 +1,15 @@
-PROJECT:=go-admin
+export PATH := $(GOPATH)/bin:$(PATH)
+export GO111MODULE=on
+LDFLAGS := -s -w
+PROJECT:=go-admin-api
+
 
 .PHONY: build
+
+all: build
+
 build:
-	CGO_ENABLED=0 go build -ldflags="-w -s" -a -installsuffix "" -o go-admin .
+	CGO_ENABLED=0 go build -ldflags="$(LDFLAGS)" -a -installsuffix "" -o go-admin-api .
 
 # make build-linux
 build-linux:
@@ -10,7 +17,7 @@ build-linux:
 	@echo "build successful"
 
 build-sqlite:
-	go build -tags sqlite3 -ldflags="-w -s" -a -installsuffix -o go-admin .
+	go build -tags sqlite3 -ldflags="$(LDFLAGS)" -a -installsuffix -o go-admin-api .
 
 # make run
 run:
