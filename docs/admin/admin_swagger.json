@@ -1,14 +1,14 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "基于Gin + Vue + Element UI的前后端分离权限管理系统的接口文档\n",
+        "description": "基于Gin + Vue + Element UI的前后端分离权限管理系统的接口文档",
         "title": "go-admin API",
         "contact": {},
         "license": {
             "name": "MIT",
             "url": "https://github.com/nicelizhi/go-admin-api/blob/master/LICENSE.md"
         },
-        "version": "2.0.0"
+        "version": "1.0.3"
     },
     "paths": {
         "/api/v1/app-config": {
@@ -251,7 +251,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"code\": -1, \"message\": \"删除失败\"}",
+                        "description": "{\"code\": -1, \"message\": ginI18n.MustGetMessage(c, \"Failed to delete\")}",
                         "schema": {
                             "type": "string"
                         }
@@ -487,7 +487,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"code\": 200, \"message\": \"删除成功\"}",
+                        "description": "{\"code\": 200, \"message\": ginI18n.MustGetMessage(c, \"Successfully deleted\")}",
                         "schema": {
                             "$ref": "#/definitions/response.Response"
                         }
@@ -552,7 +552,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"code\": 200, \"message\": \"修改成功\"}",
+                        "description": "{\"code\": 200, \"message\": ginI18n.MustGetMessage(c, \"Update completed\")}",
                         "schema": {
                             "$ref": "#/definitions/response.Response"
                         }
@@ -1540,7 +1540,7 @@
                 "summary": "获取配置",
                 "responses": {
                     "200": {
-                        "description": "{\"code\": 200, \"message\": \"修改成功\"}",
+                        "description": "{\"code\": 200, \"message\": ginI18n.MustGetMessage(c, \"Update completed\")}",
                         "schema": {
                             "allOf": [
                                 {
@@ -1590,7 +1590,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"code\": 200, \"message\": \"修改成功\"}",
+                        "description": "{\"code\": 200, \"message\": ginI18n.MustGetMessage(c, \"Update completed\")}",
                         "schema": {
                             "$ref": "#/definitions/response.Response"
                         }
@@ -1670,7 +1670,7 @@
                                                         "list": {
                                                             "type": "array",
                                                             "items": {
-                                                                "$ref": "#/definitions/models.SysApi"
+                                                                "$ref": "#/definitions/go-admin_app_admin_models.SysApi"
                                                             }
                                                         }
                                                     }
@@ -1708,7 +1708,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"code\": 200, \"message\": \"删除成功\"}",
+                        "description": "{\"code\": 200, \"message\": ginI18n.MustGetMessage(c, \"Successfully deleted\")}",
                         "schema": {
                             "$ref": "#/definitions/response.Response"
                         }
@@ -1748,7 +1748,7 @@
                                     "type": "object",
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/definitions/models.SysApi"
+                                            "$ref": "#/definitions/go-admin_app_admin_models.SysApi"
                                         }
                                     }
                                 }
@@ -1784,7 +1784,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"code\": 200, \"message\": \"修改成功\"}",
+                        "description": "{\"code\": 200, \"message\": ginI18n.MustGetMessage(c, \"Update completed\")}",
                         "schema": {
                             "$ref": "#/definitions/response.Response"
                         }
@@ -1864,7 +1864,7 @@
                                                         "list": {
                                                             "type": "array",
                                                             "items": {
-                                                                "$ref": "#/definitions/models.SysApi"
+                                                                "$ref": "#/definitions/go-admin_app_admin_models.SysApi"
                                                             }
                                                         }
                                                     }
@@ -1905,7 +1905,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"code\": 200, \"message\": \"创建成功\"}",
+                        "description": "{\"code\": 200, \"message\": ginI18n.MustGetMessage(c, \"Created successfully\")}",
                         "schema": {
                             "$ref": "#/definitions/response.Response"
                         }
@@ -1938,7 +1938,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"code\": 200, \"message\": \"删除成功\"}",
+                        "description": "{\"code\": 200, \"message\": ginI18n.MustGetMessage(c, \"Successfully deleted\")}",
                         "schema": {
                             "$ref": "#/definitions/response.Response"
                         }
@@ -2014,7 +2014,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"code\": 200, \"message\": \"修改成功\"}",
+                        "description": "{\"code\": 200, \"message\": ginI18n.MustGetMessage(c, \"Update completed\")}",
                         "schema": {
                             "$ref": "#/definitions/response.Response"
                         }
@@ -2548,7 +2548,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"code\": -1, \"message\": \"删除失败\"}",
+                        "description": "{\"code\": -1, \"message\": ginI18n.MustGetMessage(c, \"Failed to delete\")}",
                         "schema": {
                             "type": "string"
                         }
@@ -3032,17 +3032,11 @@
         "dto.SysDictDataDeleteReq": {
             "type": "object",
             "properties": {
-                "createBy": {
-                    "type": "integer"
-                },
                 "ids": {
                     "type": "array",
                     "items": {
                         "type": "integer"
                     }
-                },
-                "updateBy": {
-                    "type": "integer"
                 }
             }
         },
@@ -3310,7 +3304,7 @@
                 "sysApi": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/models.SysApi"
+                        "$ref": "#/definitions/go-admin_app_admin_models.SysApi"
                     }
                 },
                 "title": {
@@ -3397,7 +3391,7 @@
                 "sysApi": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/models.SysApi"
+                        "$ref": "#/definitions/go-admin_app_admin_models.SysApi"
                     }
                 },
                 "title": {
@@ -3565,13 +3559,13 @@
                 "sysDept": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/models.SysDept"
+                        "$ref": "#/definitions/go-admin_app_admin_models.SysDept"
                     }
                 },
                 "sysMenu": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/models.SysMenu"
+                        "$ref": "#/definitions/go-admin_app_admin_models.SysMenu"
                     }
                 },
                 "updateBy": {
@@ -3634,13 +3628,13 @@
                 "sysDept": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/models.SysDept"
+                        "$ref": "#/definitions/go-admin_app_admin_models.SysDept"
                     }
                 },
                 "sysMenu": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/models.SysMenu"
+                        "$ref": "#/definitions/go-admin_app_admin_models.SysMenu"
                     }
                 },
                 "updateBy": {
@@ -3786,30 +3780,7 @@
                 }
             }
         },
-        "handler.Login": {
-            "type": "object",
-            "required": [
-                "code",
-                "password",
-                "username",
-                "uuid"
-            ],
-            "properties": {
-                "code": {
-                    "type": "string"
-                },
-                "password": {
-                    "type": "string"
-                },
-                "username": {
-                    "type": "string"
-                },
-                "uuid": {
-                    "type": "string"
-                }
-            }
-        },
-        "models.SysApi": {
+        "go-admin_app_admin_models.SysApi": {
             "type": "object",
             "properties": {
                 "action": {
@@ -3844,7 +3815,7 @@
                 }
             }
         },
-        "models.SysConfig": {
+        "go-admin_app_admin_models.SysConfig": {
             "type": "object",
             "properties": {
                 "configKey": {
@@ -3882,13 +3853,13 @@
                 }
             }
         },
-        "models.SysDept": {
+        "go-admin_app_admin_models.SysDept": {
             "type": "object",
             "properties": {
                 "children": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/models.SysDept"
+                        "$ref": "#/definitions/go-admin_app_admin_models.SysDept"
                     }
                 },
                 "createBy": {
@@ -3946,7 +3917,7 @@
                 }
             }
         },
-        "models.SysMenu": {
+        "go-admin_app_admin_models.SysMenu": {
             "type": "object",
             "properties": {
                 "action": {
@@ -3964,7 +3935,7 @@
                 "children": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/models.SysMenu"
+                        "$ref": "#/definitions/go-admin_app_admin_models.SysMenu"
                     }
                 },
                 "component": {
@@ -4024,7 +3995,7 @@
                 "sysApi": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/models.SysApi"
+                        "$ref": "#/definitions/go-admin_app_admin_models.SysApi"
                     }
                 },
                 "title": {
@@ -4037,6 +4008,29 @@
                     "type": "string"
                 },
                 "visible": {
+                    "type": "string"
+                }
+            }
+        },
+        "handler.Login": {
+            "type": "object",
+            "required": [
+                "code",
+                "password",
+                "username",
+                "uuid"
+            ],
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "uuid": {
                     "type": "string"
                 }
             }
