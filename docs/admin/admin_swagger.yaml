@@ -170,14 +170,10 @@ definitions:
     type: object
   dto.SysDictDataDeleteReq:
     properties:
-      createBy:
-        type: integer
       ids:
         items:
           type: integer
         type: array
-      updateBy:
-        type: integer
     type: object
   dto.SysDictDataGetAllResp:
     properties:
@@ -357,7 +353,7 @@ definitions:
         type: integer
       sysApi:
         items:
-          $ref: '#/definitions/models.SysApi'
+          $ref: '#/definitions/go-admin_app_admin_models.SysApi'
         type: array
       title:
         description: 显示名称
@@ -420,7 +416,7 @@ definitions:
         type: integer
       sysApi:
         items:
-          $ref: '#/definitions/models.SysApi'
+          $ref: '#/definitions/go-admin_app_admin_models.SysApi'
         type: array
       title:
         description: 显示名称
@@ -533,11 +529,11 @@ definitions:
         type: string
       sysDept:
         items:
-          $ref: '#/definitions/models.SysDept'
+          $ref: '#/definitions/go-admin_app_admin_models.SysDept'
         type: array
       sysMenu:
         items:
-          $ref: '#/definitions/models.SysMenu'
+          $ref: '#/definitions/go-admin_app_admin_models.SysMenu'
         type: array
       updateBy:
         type: integer
@@ -581,11 +577,11 @@ definitions:
         type: string
       sysDept:
         items:
-          $ref: '#/definitions/models.SysDept'
+          $ref: '#/definitions/go-admin_app_admin_models.SysDept'
         type: array
       sysMenu:
         items:
-          $ref: '#/definitions/models.SysMenu'
+          $ref: '#/definitions/go-admin_app_admin_models.SysMenu'
         type: array
       updateBy:
         type: integer
@@ -683,23 +679,7 @@ definitions:
         description: 用户ID
         type: integer
     type: object
-  handler.Login:
-    properties:
-      code:
-        type: string
-      password:
-        type: string
-      username:
-        type: string
-      uuid:
-        type: string
-    required:
-    - code
-    - password
-    - username
-    - uuid
-    type: object
-  models.SysApi:
+  go-admin_app_admin_models.SysApi:
     properties:
       action:
         type: string
@@ -722,7 +702,7 @@ definitions:
       updatedAt:
         type: string
     type: object
-  models.SysConfig:
+  go-admin_app_admin_models.SysConfig:
     properties:
       configKey:
         type: string
@@ -747,11 +727,11 @@ definitions:
       updatedAt:
         type: string
     type: object
-  models.SysDept:
+  go-admin_app_admin_models.SysDept:
     properties:
       children:
         items:
-          $ref: '#/definitions/models.SysDept'
+          $ref: '#/definitions/go-admin_app_admin_models.SysDept'
         type: array
       createBy:
         type: integer
@@ -792,7 +772,7 @@ definitions:
       updatedAt:
         type: string
     type: object
-  models.SysMenu:
+  go-admin_app_admin_models.SysMenu:
     properties:
       action:
         type: string
@@ -804,7 +784,7 @@ definitions:
         type: string
       children:
         items:
-          $ref: '#/definitions/models.SysMenu'
+          $ref: '#/definitions/go-admin_app_admin_models.SysMenu'
         type: array
       component:
         type: string
@@ -844,7 +824,7 @@ definitions:
         type: integer
       sysApi:
         items:
-          $ref: '#/definitions/models.SysApi'
+          $ref: '#/definitions/go-admin_app_admin_models.SysApi'
         type: array
       title:
         type: string
@@ -854,6 +834,22 @@ definitions:
         type: string
       visible:
         type: string
+    type: object
+  handler.Login:
+    properties:
+      code:
+        type: string
+      password:
+        type: string
+      username:
+        type: string
+      uuid:
+        type: string
+    required:
+    - code
+    - password
+    - username
+    - uuid
     type: object
   response.Page:
     properties:
@@ -1056,13 +1052,12 @@ definitions:
     type: object
 info:
   contact: {}
-  description: |-
-    基于Gin + Vue + Element UI的前后端分离权限管理系统的接口文档
+  description: 基于Gin + Vue + Element UI的前后端分离权限管理系统的接口文档
   license:
-    name: MIT
+    name: Apache 2.0
     url: https://github.com/nicelizhi/go-admin-api/blob/master/LICENSE.md
   title: go-admin API
-  version: 2.0.0
+  version: 1.0.3
 paths:
   /api/v1/app-config:
     get:
@@ -1162,7 +1157,8 @@ paths:
           $ref: '#/definitions/dto.SysDeptDeleteReq'
       responses:
         "200":
-          description: '{"code": -1, "message": "删除失败"}'
+          description: '{"code": -1, "message": ginI18n.MustGetMessage(c, "Failed
+            to delete")}'
           schema:
             type: string
       security:
@@ -1298,7 +1294,8 @@ paths:
           $ref: '#/definitions/dto.SysDictDataDeleteReq'
       responses:
         "200":
-          description: '{"code": 200, "message": "删除成功"}'
+          description: '{"code": 200, "message": ginI18n.MustGetMessage(c, "Successfully
+            deleted")}'
           schema:
             $ref: '#/definitions/response.Response'
       security:
@@ -1392,7 +1389,8 @@ paths:
           $ref: '#/definitions/dto.SysDictDataUpdateReq'
       responses:
         "200":
-          description: '{"code": 200, "message": "修改成功"}'
+          description: '{"code": 200, "message": ginI18n.MustGetMessage(c, "Update
+            completed")}'
           schema:
             $ref: '#/definitions/response.Response'
       security:
@@ -2009,7 +2007,8 @@ paths:
       description: 界面操作设置配置值的获取
       responses:
         "200":
-          description: '{"code": 200, "message": "修改成功"}'
+          description: '{"code": 200, "message": ginI18n.MustGetMessage(c, "Update
+            completed")}'
           schema:
             allOf:
             - $ref: '#/definitions/response.Response'
@@ -2038,7 +2037,8 @@ paths:
           type: array
       responses:
         "200":
-          description: '{"code": 200, "message": "修改成功"}'
+          description: '{"code": 200, "message": ginI18n.MustGetMessage(c, "Update
+            completed")}'
           schema:
             $ref: '#/definitions/response.Response'
       security:
@@ -2058,7 +2058,8 @@ paths:
           $ref: '#/definitions/dto.SysApiDeleteReq'
       responses:
         "200":
-          description: '{"code": 200, "message": "删除成功"}'
+          description: '{"code": 200, "message": ginI18n.MustGetMessage(c, "Successfully
+            deleted")}'
           schema:
             $ref: '#/definitions/response.Response'
       security:
@@ -2106,7 +2107,7 @@ paths:
                   - properties:
                       list:
                         items:
-                          $ref: '#/definitions/models.SysApi'
+                          $ref: '#/definitions/go-admin_app_admin_models.SysApi'
                         type: array
                     type: object
               type: object
@@ -2131,7 +2132,7 @@ paths:
             - $ref: '#/definitions/response.Response'
             - properties:
                 data:
-                  $ref: '#/definitions/models.SysApi'
+                  $ref: '#/definitions/go-admin_app_admin_models.SysApi'
               type: object
       security:
       - Bearer: []
@@ -2151,7 +2152,8 @@ paths:
           $ref: '#/definitions/dto.SysApiUpdateReq'
       responses:
         "200":
-          description: '{"code": 200, "message": "修改成功"}'
+          description: '{"code": 200, "message": ginI18n.MustGetMessage(c, "Update
+            completed")}'
           schema:
             $ref: '#/definitions/response.Response'
       security:
@@ -2172,7 +2174,8 @@ paths:
           type: array
       responses:
         "200":
-          description: '{"code": 200, "message": "删除成功"}'
+          description: '{"code": 200, "message": ginI18n.MustGetMessage(c, "Successfully
+            deleted")}'
           schema:
             $ref: '#/definitions/response.Response'
       security:
@@ -2220,7 +2223,7 @@ paths:
                   - properties:
                       list:
                         items:
-                          $ref: '#/definitions/models.SysApi'
+                          $ref: '#/definitions/go-admin_app_admin_models.SysApi'
                         type: array
                     type: object
               type: object
@@ -2242,7 +2245,8 @@ paths:
           $ref: '#/definitions/dto.SysConfigControl'
       responses:
         "200":
-          description: '{"code": 200, "message": "创建成功"}'
+          description: '{"code": 200, "message": ginI18n.MustGetMessage(c, "Created
+            successfully")}'
           schema:
             $ref: '#/definitions/response.Response'
       security:
@@ -2286,7 +2290,8 @@ paths:
           $ref: '#/definitions/dto.SysConfigControl'
       responses:
         "200":
-          description: '{"code": 200, "message": "修改成功"}'
+          description: '{"code": 200, "message": ginI18n.MustGetMessage(c, "Update
+            completed")}'
           schema:
             $ref: '#/definitions/response.Response'
       security:
@@ -2601,7 +2606,8 @@ paths:
         type: integer
       responses:
         "200":
-          description: '{"code": -1, "message": "删除失败"}'
+          description: '{"code": -1, "message": ginI18n.MustGetMessage(c, "Failed
+            to delete")}'
           schema:
             type: string
       summary: 删除表结构

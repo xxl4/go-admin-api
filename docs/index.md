@@ -54,6 +54,12 @@ The front-end and back-end separation authority management system based on Gin +
 1. Service monitoring: View the basic information of some servers.
 1. Content management: demo function, including classification management and content management. You can refer to the easy to use quick start.
 
+# Api Document Generate
+
+```
+swag init --parseDependency --parseDepth=6 --instanceName admin -o ./docs/admin
+```
+
 # Install
 
 [Docker Install](https://nicelizhi.github.io/go-admin-api/guide/install/docker)
