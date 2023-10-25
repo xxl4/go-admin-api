@@ -10,14 +10,14 @@
 ```
 settings:
   application:
-    # dev开发环境 test测试环境 prod线上环境
+    # dev test prod
     mode: dev
-    # 服务器ip，默认使用 0.0.0.0
+    # Application IP default 0.0.0.0
     host: 0.0.0.0
-    # 服务名称
+    # Application Name
     name: api-admin-api
-    # 端口号
-    port: 8000 # 服务端口号
+    # Application Port
+    port: 8000 
     readtimeout: 1
     writertimeout: 2
     # 数据权限功能开关
