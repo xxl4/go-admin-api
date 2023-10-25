@@ -6,67 +6,8 @@
 
 
 ### 2、Configure
-> [View Online Config file](https://github.com/nicelizhi/go-admin-api/blob/master/config/settings.full.yml)
-```
-settings:
-  application:
-    # dev test prod
-    mode: dev
-    # Application IP default 0.0.0.0
-    host: 0.0.0.0
-    # Application Name
-    name: api-admin-api
-    # Application Port
-    port: 8000 
-    readtimeout: 1
-    writertimeout: 2
-    # 数据权限功能开关
-    enabledp: false
-  ssl:
-    # https对应的域名
-    domain: localhost:8000
-    # https开关
-    enable: false
-    # ssl 证书key
-    key: keystring
-    # ssl 证书路径
-    pem: temp/pem.pem
-  logger:
-    # 日志存放路径
-    path: temp/logs
-    # 日志输出，file：文件，default：命令行，其他：命令行
-    stdout: '' #控制台日志，启用后，不输出到文件
-    # 日志等级, trace, debug, info, warn, error, fatal
-    level: trace
-    # 数据库日志开关
-    enableddb: false
-  jwt:
-    # token 密钥，生产环境时及的修改
-    secret: go-admin
-    # token 过期时间 单位：秒
-    timeout: 3600
-  database:
-    # 数据库类型 mysql，sqlite3， postgres
-    driver: mysql
-    # 数据库连接字符串 mysql 缺省信息 charset=utf8&parseTime=True&loc=Local&timeout=1000ms
-    source: user:password@tcp(127.0.0.1:3306)/dbname?charset=utf8&parseTime=True&loc=Local&timeout=1000ms
-    # source: sqlite3.db
-    # source: host=myhost port=myport user=gorm dbname=gorm password=mypassword
-    registers:
-      - sources:
-          - user:password@tcp(127.0.0.1:3306)/dbname?charset=utf8&parseTime=True&loc=Local&timeout=1000ms
-  gen:
-    # 代码生成读取的数据库名称
-    dbname: dbname
-    # 代码生成是使用前端代码存放位置，需要指定到src文件夹，相对路径
-    frontpath: ../admin-ui/src
-  queue:
-    memory:
-      poolSize: 100
-  extend: # 扩展项使用说明
-    demo:
-      name: data
-```
+
+[Configure Docs](https://nicelizhi.github.io/go-admin-api/guide/configure/)
 
 ### 3、Start It (Ubuntu/Centos)
 

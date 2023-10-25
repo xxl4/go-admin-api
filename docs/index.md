@@ -71,6 +71,7 @@ swag init --parseDependency --parseDepth=6 --instanceName admin -o ./docs/admin
 
 # Configure
 
+[Configure Docs](https://nicelizhi.github.io/go-admin-api/guide/configure/)
 
 # Document
 [https://nicelizhi.github.io/go-admin-api/](https://nicelizhi.github.io/go-admin-api/) 
