@@ -1054,7 +1054,7 @@ info:
   contact: {}
   description: 基于Gin + Vue + Element UI的前后端分离权限管理系统的接口文档
   license:
-    name: MIT
+    name: Apache 2.0
     url: https://github.com/nicelizhi/go-admin-api/blob/master/LICENSE.md
   title: go-admin API
   version: 1.0.3

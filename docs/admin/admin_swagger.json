@@ -5,7 +5,7 @@
         "title": "go-admin API",
         "contact": {},
         "license": {
-            "name": "MIT",
+            "name": "Apache 2.0",
             "url": "https://github.com/nicelizhi/go-admin-api/blob/master/LICENSE.md"
         },
         "version": "1.0.3"
