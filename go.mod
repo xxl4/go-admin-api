@@ -1,6 +1,8 @@
 module go-admin
 
-go 1.19
+go 1.21
+
+toolchain go1.21.2
 
 require (
 	github.com/alibaba/sentinel-golang v1.0.4
@@ -25,7 +27,7 @@ require (
 	github.com/spf13/cobra v1.0.0
 	github.com/swaggo/files v1.0.1
 	github.com/swaggo/gin-swagger v1.6.0
-	github.com/swaggo/swag v1.8.12
+	github.com/swaggo/swag v1.16.2
 	github.com/unrolled/secure v1.0.8
 	golang.org/x/crypto v0.14.0
 	golang.org/x/text v0.13.0
@@ -40,8 +42,6 @@ require (
 	github.com/BurntSushi/toml v1.3.2 // indirect
 	github.com/Knetic/govaluate v3.0.1-0.20171022003610-9aa49832a739+incompatible // indirect
 	github.com/KyleBanks/depth v1.2.1 // indirect
-	github.com/PuerkitoBio/purell v1.1.1 // indirect
-	github.com/PuerkitoBio/urlesc v0.0.0-20170810143723-de5bf2ad4578 // indirect
 	github.com/andeya/ameda v1.5.3 // indirect
 	github.com/andeya/goutil v1.0.1 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
@@ -64,10 +64,10 @@ require (
 	github.com/go-admin-team/redis-watcher/v2 v2.0.0-20221121052608-058cebff72c2 // indirect
 	github.com/go-admin-team/redisqueue/v2 v2.0.0 // indirect
 	github.com/go-ole/go-ole v1.2.6 // indirect
-	github.com/go-openapi/jsonpointer v0.19.5 // indirect
-	github.com/go-openapi/jsonreference v0.19.6 // indirect
-	github.com/go-openapi/spec v0.20.4 // indirect
-	github.com/go-openapi/swag v0.19.15 // indirect
+	github.com/go-openapi/jsonpointer v0.20.0 // indirect
+	github.com/go-openapi/jsonreference v0.20.2 // indirect
+	github.com/go-openapi/spec v0.20.9 // indirect
+	github.com/go-openapi/swag v0.22.4 // indirect
 	github.com/go-playground/locales v0.14.1 // indirect
 	github.com/go-playground/universal-translator v0.18.1 // indirect
 	github.com/go-playground/validator/v10 v10.14.1 // indirect
@@ -95,7 +95,7 @@ require (
 	github.com/klauspost/cpuid/v2 v2.2.5 // indirect
 	github.com/leodido/go-urn v1.2.4 // indirect
 	github.com/lufia/plan9stats v0.0.0-20211012122336-39d0f177ccd0 // indirect
-	github.com/mailru/easyjson v0.7.6 // indirect
+	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/mattn/go-colorable v0.1.7 // indirect
 	github.com/mattn/go-isatty v0.0.19 // indirect
 	github.com/mattn/go-sqlite3 v1.14.17 // indirect
@@ -135,10 +135,10 @@ require (
 	golang.org/x/image v0.11.0 // indirect
 	golang.org/x/lint v0.0.0-20200302205851-738671d3881b // indirect
 	golang.org/x/net v0.17.0 // indirect
-	golang.org/x/sync v0.3.0 // indirect
+	golang.org/x/sync v0.4.0 // indirect
 	golang.org/x/sys v0.13.0 // indirect
 	golang.org/x/time v0.0.0-20191024005414-555d28b269f0 // indirect
-	golang.org/x/tools v0.7.0 // indirect
+	golang.org/x/tools v0.14.0 // indirect
 	google.golang.org/protobuf v1.31.0 // indirect
 	gopkg.in/AlecAivazis/survey.v1 v1.8.5 // indirect
 	gopkg.in/kyokomi/emoji.v1 v1.5.1 // indirect
@@ -147,7 +147,7 @@ require (
 	gorm.io/plugin/dbresolver v1.3.0 // indirect
 )
 
-replace (
-	github.com/nicelizhi/go-admin-core v1.6.2 => ../go-admin-core
-	github.com/nicelizhi/go-admin-core/sdk v1.6.3 => ../go-admin-core/sdk
-)
+// replace (
+// 	github.com/nicelizhi/go-admin-core v1.6.2 => ../go-admin-core
+// 	github.com/nicelizhi/go-admin-core/sdk v1.6.3 => ../go-admin-core/sdk
+// )
