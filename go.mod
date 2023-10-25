@@ -112,12 +112,10 @@ require (
 	github.com/nyaruka/phonenumbers v1.0.55 // indirect
 	github.com/pelletier/go-toml/v2 v2.0.9 // indirect
 	github.com/power-devops/perfstat v0.0.0-20210106213030-5aafc221ea8c // indirect
-	github.com/prometheus/common v0.26.0 // indirect
-	github.com/prometheus/procfs v0.6.0 // indirect
-	github.com/redis/go-redis/v9 v9.0.3 // indirect
 	github.com/prometheus/client_model v0.4.1-0.20230718164431-9a2bf3000d16 // indirect
 	github.com/prometheus/common v0.44.0 // indirect
 	github.com/prometheus/procfs v0.11.1 // indirect
+	github.com/redis/go-redis/v9 v9.0.3 // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/shamsher31/goimgext v1.0.0 // indirect
 	github.com/shoenig/go-m1cpu v0.1.6 // indirect
@@ -149,7 +147,7 @@ require (
 	gorm.io/plugin/dbresolver v1.3.0 // indirect
 )
 
-// replace (
-// 	github.com/nicelizhi/go-admin-core v1.6.2 => ../go-admin-core
-// 	github.com/nicelizhi/go-admin-core/sdk v1.6.2 => ../go-admin-core/sdk
-// )
+replace (
+	github.com/nicelizhi/go-admin-core v1.6.2 => ../go-admin-core
+	github.com/nicelizhi/go-admin-core/sdk v1.6.3 => ../go-admin-core/sdk
+)
