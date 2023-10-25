@@ -12,8 +12,7 @@ const docTemplateadmin = `{
         "contact": {},
         "license": {
             "name": "MIT",
-            "url": "https://github.com/nicelizhi/go-admin-api/blob/master/LICENSE.md"
-        },
+            "url": "https://github.com/nicelizhi/ghttps://github.com/nicelizhi/go-admin-api/  },
         "version": "{{.Version}}"
     },
     "host": "{{.Host}}",
@@ -4359,8 +4358,8 @@ var SwaggerInfoadmin = &swag.Spec{
 	Description:      "基于Gin + Vue + Element UI的前后端分离权限管理系统的接口文档",
 	InfoInstanceName: "admin",
 	SwaggerTemplate:  docTemplateadmin,
-	LeftDelim:        "{{",
-	RightDelim:       "}}",
+	// LeftDelim:        "{{",
+	// RightDelim:       "}}",
 }
 
 func init() {
