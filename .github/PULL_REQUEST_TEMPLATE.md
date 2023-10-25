@@ -11,7 +11,7 @@ Thank you!
 
 -->
 
-[[中文版模板 / Chinese template](https://github.com/nicelizhi/go-admin/blob/master/.github/PULL_REQUEST_TEMPLATE/pr_cn.md)]
+[[中文版模板 / Chinese template](https://github.com/nicelizhi/go-admin-api/blob/master/.github/PULL_REQUEST_TEMPLATE/pr_cn.md)]
 
 ### 🤔 This is a ...
 

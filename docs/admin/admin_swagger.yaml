@@ -1060,7 +1060,7 @@ info:
     基于Gin + Vue + Element UI的前后端分离权限管理系统的接口文档
   license:
     name: MIT
-    url: https://github.com/nicelizhi/go-admin/blob/master/LICENSE.md
+    url: https://github.com/nicelizhi/go-admin-api/blob/master/LICENSE.md
   title: go-admin API
   version: 2.0.0
 paths:
