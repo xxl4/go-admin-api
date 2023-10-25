@@ -41,7 +41,10 @@ for os in $os_all; do
             mv ./go_admin_api_${os}_${arch} ${go_admin_api_path}/go_admin_api
         fi  
         cp ../LICENSE.md ${go_admin_api_path}
-        cp -rf ../config/* ${go_admin_api_path}
+        cp -rf ../config/*.sql ${go_admin_api_path}
+        cp -rf ../config/READMEN.md ${go_admin_api_path}
+        cp -rf ../config/settings.yml ${go_admin_api_path}
+        cp -rf ../config/settings.full.yml ${go_admin_api_path}
         rm -rf ${go_admin_api_path}/legacy
 
         # packages
