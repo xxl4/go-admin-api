@@ -1,6 +1,61 @@
-#!/bin/bash
-echo "go build"
-go mod tidy
-go build -o go-admin-api main.go
-chmod +x ./go-admin-api
-echo "build go-admin-api success"
+# compile for version
+make
+if [ $? -ne 0 ]; then
+    echo "make error"
+    exit 1
+fi
+
+go_admin_api_version=`./go-admin-api version`
+echo "build version: $go_admin_api_version"
+
+# cross_compiles
+make -f ./Makefile.cross-compiles
+
+rm -rf ./release/packages
+mkdir -p ./release/packages
+
+os_all='linux windows darwin freebsd'
+arch_all='386 amd64 arm arm64 mips64 mips64le mips mipsle riscv64'
+
+cd ./release
+
+for os in $os_all; do
+    for arch in $arch_all; do
+        go_admin_api_dir_name="go_admin_api_${go_admin_api_version}_${os}_${arch}"
+        go_admin_api_path="./packages/go_admin_api_${go_admin_api_version}_${os}_${arch}"
+
+        if [ "x${os}" = x"windows" ]; then
+            if [ ! -f "./go_admin_api_${os}_${arch}.exe" ]; then
+                continue
+            fi
+            if [ ! -f "./go_admin_api_${os}_${arch}.exe" ]; then
+                continue
+            fi
+            mkdir ${go_admin_api_path}
+            mv ./go_admin_api_${os}_${arch}.exe ${go_admin_api_path}/go_admin_api.exe
+        else
+            if [ ! -f "./go_admin_api_${os}_${arch}" ]; then
+                continue
+            fi
+            mkdir ${go_admin_api_path}
+            mv ./go_admin_api_${os}_${arch} ${go_admin_api_path}/go_admin_api
+        fi  
+        cp ../LICENSE.md ${go_admin_api_path}
+        cp -rf ../config/* ${go_admin_api_path}
+        rm -rf ${go_admin_api_path}/legacy
+
+        # packages
+        cd ./packages
+        if [ "x${os}" = x"windows" ]; then
+            zip -rq ${go_admin_api_dir_name}.zip ${go_admin_api_dir_name}
+        else
+            tar -zcf ${go_admin_api_dir_name}.tar.gz ${go_admin_api_dir_name}
+        fi  
+        cd ..
+        rm -rf ${go_admin_api_path}
+    done
+done
+
+cd -
+
+echo "Done"
