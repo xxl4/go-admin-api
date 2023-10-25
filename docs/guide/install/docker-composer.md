@@ -1,9 +1,15 @@
-# Docker Install go-admin
+# Docker Compose Install go-admin
 > Build a full-featured administrative interface quickly Go-Admin
 
 ### 1、Ready
 
-> docker-compose.yaml (MySQL Version)
+> 1.1、Docker-compose install
+
+```
+https://docs.docker.com/compose/install/
+```
+
+> 1.2、docker-compose.yaml (MySQL Version)
 ```
 version: '3.8'
 services:
@@ -40,7 +46,7 @@ networks:
     driver: bridge
 ```
 
-> docker-compose.yaml (PG Version)
+> 1.3、docker-compose.yaml (PG Version) (Option)
 ```
 version: '3.8'
 services:
