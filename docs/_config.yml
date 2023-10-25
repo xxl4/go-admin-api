@@ -7,6 +7,12 @@ safe: true
 source: [/]
 incremental: false
 highlighter: rouge
+page_excerpts: true
+paginate: 5
+site:
+  categories: CATEGORY
+  tags: TAG
+  pages: []
 gist:
   noscript: false
 kramdown:
