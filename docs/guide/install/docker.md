@@ -3,6 +3,8 @@
 
 ### 1、Ready
 
+> tip: [how to install docker](https://nicelizhi.github.io/go-admin-api/guide/install/installdocker)
+
 ```
 docker pull registry.ap-southeast-1.aliyuncs.com/kuops/go-admin-api:latest 
 ```
