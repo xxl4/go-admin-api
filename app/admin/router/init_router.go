@@ -10,7 +10,7 @@ import (
 	"github.com/nicelizhi/go-admin-core/sdk"
 )
 
-// InitRouter 路由初始化，不要怀疑，这里用到了
+// InitRouter
 func InitRouter() {
 	var r *gin.Engine
 	h := sdk.Runtime.GetEngine()

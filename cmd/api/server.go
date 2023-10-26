@@ -143,7 +143,6 @@ func run() error {
 	fmt.Printf("-  Local:   http://localhost:%d/swagger/admin/index.html \r\n", config.ApplicationConfig.Port)
 	fmt.Printf("-  Network: %s://%s:%d/swagger/admin/index.html \r\n", "http", pkg.GetLocaHonst(), config.ApplicationConfig.Port)
 	fmt.Printf("%s Enter Control + C Shutdown Server \r\n", pkg.GetCurrentTimeStr())
-	// 等待中断信号以优雅地关闭服务器（设置 5 秒的超时时间）
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
 	<-quit
@@ -167,9 +166,9 @@ func run() error {
 var Router runtime.Router
 
 func tip() {
-	usageStr := `欢迎使用 ` + pkg.Green(`go-admin api `+global.Version) + ` 可以使用 ` + pkg.Red(`-h`) + ` 查看命令`
+	usageStr := `Welcome ` + pkg.Green(`go-admin api `+global.Version) + ` you can use ` + pkg.Red(`-h`) + ` to view help`
 	fmt.Printf("%s \n\n", usageStr)
-	systemStr := `您的 timezone ` + pkg.Green(config.ApplicationConfig.TimeZone) + ` local 为` + pkg.Red(config.ApplicationConfig.Locale)
+	systemStr := `Server timezone is ` + pkg.Green(config.ApplicationConfig.TimeZone) + ` Local is` + pkg.Red(config.ApplicationConfig.Locale)
 	fmt.Printf("%s \n\n", systemStr)
 }
 
