@@ -10,11 +10,24 @@ on:
     
 
 env:
-  IMAGE_NAME: registry.ap-southeast-1.aliyuncs.com/kuops/go-admin-api # 镜像名称
+  IMAGE_NAME: registry.ap-southeast-1.aliyuncs.com/kuops/go-admin-api # docker image
   TAG: ${{ github.sha }}
   IMAGE_NAME_TAG: registry.ap-southeast-1.aliyuncs.com/kuops/go-admin-api:${{ github.sha }}
 
 jobs:
+  sync:
+    name: 'Submodules Sync'
+    runs-on: ubuntu-latest
+    steps:
+      - name: check submodules
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+      # Update references
+      - name: Git Sumbodule Update
+        run: |
+          git pull --recurse-submodules
+          git submodule update --remote --recursive
 
   build:
     runs-on: ubuntu-latest
@@ -23,7 +36,6 @@ jobs:
         go-version: ['1.21']
     steps:
       - uses: actions/checkout@v4
-
       - name: Set up Go ${{ matrix.go-version }}
         uses: actions/setup-go@v4
         with:
