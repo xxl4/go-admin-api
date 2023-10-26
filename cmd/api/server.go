@@ -191,6 +191,7 @@ func initRouter() {
 		r.Use(handler.TlsHandler())
 	}
 	//r.Use(middleware.Metrics())
+	//r.StaticFS("/admin-ui", http.FS(f))
 	r.Use(common.Sentinel()).
 		Use(common.RequestId(pkg.TrafficKey)).
 		Use(api.SetRequestLogger).

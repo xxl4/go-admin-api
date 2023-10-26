@@ -20,7 +20,7 @@ func AuthInit() (*jwt.GinJWTMiddleware, error) {
 		}
 	}
 	return jwt.New(&jwt.GinJWTMiddleware{
-		Realm:           "test zone",
+		Realm:           "go-admin zone",
 		Key:             []byte(config.JwtConfig.Secret),
 		Timeout:         timeout,
 		MaxRefresh:      time.Hour,
