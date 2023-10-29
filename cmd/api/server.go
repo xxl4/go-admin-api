@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
+	"strings"
 	"syscall"
 	"time"
 
@@ -23,6 +24,7 @@ import (
 	"github.com/nicelizhi/go-admin-core/sdk/pkg"
 	"github.com/spf13/cobra"
 
+	resource "go-admin/admin-ui"
 	"go-admin/app/admin/models"
 	"go-admin/app/admin/router"
 	"go-admin/app/jobs"
@@ -201,6 +203,16 @@ func initRouter() {
 			UnmarshalFunc:    json.Unmarshal,
 			FormatBundleFile: "json",
 		})))
+
+	r.NoRoute(func(ctx *gin.Context) {
+		accept := ctx.Request.Header.Get("Accept")
+		flag := strings.Contains(accept, "text/html")
+		if flag {
+			ctx.Writer.WriteHeader(200)
+			ctx.Writer.WriteString(string(resource.Html))
+			ctx.Writer.Flush()
+		}
+	})
 
 	common.InitMiddleware(r)
 
