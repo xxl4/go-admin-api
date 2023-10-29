@@ -155,7 +155,7 @@ require (
 	honnef.co/go/tools v0.0.1-2020.1.4 // indirect
 )
 
-replace (
-	github.com/nicelizhi/go-admin-core v1.6.3 => ../go-admin-core
-	github.com/nicelizhi/go-admin-core/sdk v1.6.4 => ../go-admin-core/sdk
-)
+// replace (
+// 	github.com/nicelizhi/go-admin-core v1.6.3 => ../go-admin-core
+// 	github.com/nicelizhi/go-admin-core/sdk v1.6.4 => ../go-admin-core/sdk
+// )
