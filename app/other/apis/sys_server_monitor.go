@@ -2,6 +2,7 @@ package apis
 
 import (
 	"fmt"
+	"go-admin/common/global"
 	"runtime"
 	"strconv"
 	"strings"
@@ -59,6 +60,24 @@ func GetHourDiffer(startTime, endTime string) int64 {
 	} else {
 		return hour
 	}
+}
+
+// ServerVer
+// @Summary Server Version
+// @Description JSON
+// @Tags System
+// Success 200 {object} response.Response "{"code": 200, "data": [...]}"
+// Router /api/v1/server-ver [get]
+// Security Bearer
+func (e ServerMonitor) ServerVer(c *gin.Context) {
+	e.Context = c
+
+	e.Custom(gin.H{
+		"code":    200,
+		"ver":     global.VersionNum,
+		"ver_num": global.VersionNum,
+	})
+
 }
 
 // ServerInfo 获取系统信息

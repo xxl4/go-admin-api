@@ -1,8 +1,16 @@
 package router
 
 import (
+	"embed"
+	"errors"
+	resource "go-admin/admin-ui"
 	"go-admin/app/admin/apis"
+	"io/fs"
 	"mime"
+	"net/http"
+	"path"
+	"path/filepath"
+	"strings"
 
 	"github.com/nicelizhi/go-admin-core/sdk/config"
 
@@ -17,6 +25,49 @@ import (
 	"go-admin/common/middleware/handler"
 	_ "go-admin/docs/admin"
 )
+
+type Resource struct {
+	fs   embed.FS
+	path string
+}
+
+func CssResource() *Resource {
+	return &Resource{
+		fs:   resource.CssStatic,
+		path: "dist/css",
+	}
+}
+
+func JsResource() *Resource {
+	return &Resource{
+		fs:   resource.JsStatic,
+		path: "dist/js",
+	}
+}
+
+func ImgResource() *Resource {
+	return &Resource{
+		fs:   resource.ImgStatic,
+		path: "dist/img",
+	}
+}
+
+func FontsResource() *Resource {
+	return &Resource{
+		fs:   resource.FontStatic,
+		path: "dist/fonts",
+	}
+}
+
+func (r *Resource) Open(name string) (fs.File, error) {
+	if filepath.Separator != '/' && strings.ContainsRune(name, filepath.Separator) {
+		return nil, errors.New("http: invalid character in file path")
+	}
+	fullName := filepath.Join(r.path, filepath.FromSlash(path.Clean("/"+name)))
+	file, err := r.fs.Open(fullName)
+
+	return file, err
+}
 
 func InitSysRouter(r *gin.Engine, authMiddleware *jwt.GinJWTMiddleware) *gin.RouterGroup {
 	g := r.Group("")
@@ -40,6 +91,13 @@ func sysBaseRouter(r *gin.RouterGroup) {
 
 	if config.ApplicationConfig.Mode != "prod" {
 		r.GET("/", apis.GoAdmin)
+
+		r.GET("/favicon.ico", apis.Favicon)
+		r.StaticFS("/css", http.FS(CssResource()))
+		r.StaticFS("/js", http.FS(JsResource()))
+		r.StaticFS("/img", http.FS(ImgResource()))
+		r.StaticFS("/fonts", http.FS(FontsResource()))
+
 	}
 	r.GET("/info", handler.Ping)
 }
