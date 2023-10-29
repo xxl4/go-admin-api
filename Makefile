@@ -6,7 +6,13 @@ PROJECT:=go-admin-api
 
 .PHONY: build
 
-all: build
+all: 
+	make build-ui
+	make build
+
+build-ui:
+	@echo "build node start"
+	cd ./admin-ui/ && npm run build:prod
 
 build:
 	CGO_ENABLED=0 go build -ldflags="$(LDFLAGS)" -a -installsuffix "" -o go-admin-api .
